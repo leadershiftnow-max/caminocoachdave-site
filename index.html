@@ -119,10 +119,10 @@
   /* The walk: Dave stays put in the middle of the road while the five paths pass him, left then right. */
   .walk { position: relative; padding-block: 4vh 2vh; }
   .walk .wrap { position: relative; }
-  .walker { position: sticky; top: 13vh; height: 72vh; display: flex; justify-content: center; align-items: flex-end; pointer-events: none; z-index: 1; margin-bottom: -72vh; }
-  .walker img { height: 100%; width: auto; max-width: none; filter: drop-shadow(0 26px 40px rgba(0,0,0,0.6)); }
+  .walker { position: sticky; top: 22vh; height: 60vh; display: flex; justify-content: center; align-items: flex-end; pointer-events: none; z-index: 1; margin-bottom: -60vh; }
+  .walker img { height: 100%; width: auto; max-width: 24%; object-fit: contain; object-position: bottom; filter: drop-shadow(0 26px 40px rgba(0,0,0,0.6)); }
   .beat { position: relative; z-index: 2; min-height: 90vh; display: flex; align-items: center; padding-block: 5vh; }
-  .beat > .story { width: min(44ch, 100%); }
+  .beat > .story { width: min(44ch, 36%); }
   .beat.l { justify-content: flex-start; }
   .beat.r { justify-content: flex-end; }
   .beat .story p, .beat .facts, .beat .note { text-shadow: 0 2px 24px rgba(11,6,69,0.95); }
@@ -176,7 +176,8 @@
     .hero-copy { padding: 8px 16px 48px; }
     section { padding-block: 9vh; }
     .intro .wrap { grid-template-columns: 1fr; }
-    .walker { top: 52vh; height: 42vh; margin-bottom: -42vh; justify-content: flex-end; transform: translateX(14%); opacity: 0.92; }
+    .walker { top: 56vh; height: 38vh; margin-bottom: -38vh; justify-content: flex-end; transform: translateX(10%); opacity: 0.9; }
+    .walker img { max-width: 60%; }
     .beat { min-height: 0; padding-block: 10vh; }
     .beat > .story { width: 100%; }
     .beat.r { justify-content: flex-start; }
@@ -259,7 +260,7 @@
 
   <section class="walk" aria-label="The five paths">
     <div class="wrap">
-      <div class="walker" aria-hidden="true"><img src="assets/km0.webp" alt="" width="875" height="1200"></div>
+      <div class="walker" aria-hidden="true"><img src="assets/walker.webp" alt="" width="577" height="1200"></div>
 
       <div class="beat l" id="book">
         <div class="story rv from-l">
