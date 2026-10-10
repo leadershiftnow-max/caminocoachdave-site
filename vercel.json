@@ -1,0 +1,10 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/book", "destination": "/#book" },
+    { "source": "/coaching", "destination": "/#coaching" },
+    { "source": "/retreats", "destination": "/#retreats" },
+    { "source": "/newsletter", "destination": "/#newsletter" },
+    { "source": "/stay", "destination": "/#stay" }
+  ]
+}

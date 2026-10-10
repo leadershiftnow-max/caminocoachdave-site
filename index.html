@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Camino Coach Dave</title>
+<meta name="description" content="Dave Hall, Camino life coach, author, pilgrim. One hub, five doors: the book Walking Toward Fire, CaminoLife coaching and app, 12 Steps on the Camino retreats, notes from the road, and a place to rest in Port Washington, Wisconsin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,300;1,9..144,600&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  /* Layout: one night-sky scroll story, same family as caminolife.app/wilgrims and 12stepsonthecamino.com.
+     Hub (five doors) up top, then one full-width story row per door, each ending in a single way out. */
+  :root {
+    --night: #0B0645;
+    --navy: #10069F;
+    --dusk: #3A2470;
+    --ember: #B8431C;
+    --terracotta: #C26B4A;
+    --dawn: #F2A65A;
+    --gold: #FEDD00;
+    --bone: #F3EEE4;
+    --bone-dim: rgba(243, 238, 228, 0.70);
+    --bone-faint: rgba(243, 238, 228, 0.34);
+    --stone: rgba(243, 238, 228, 0.07);
+    --stone-edge: rgba(243, 238, 228, 0.16);
+    --p: 0;
+    --display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    --body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--night); color: var(--bone); font-family: var(--body); font-size: 17px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+  /* Sky: night at the top of the page, ember and gold by the bottom. --p is set by scroll. */
+  .sky { position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background: linear-gradient(180deg, var(--night) 0%, var(--navy) 60%, var(--dusk) 100%); }
+  .sky-ember { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: var(--p);
+    background: linear-gradient(180deg, #14082e 0%, #4a1a2e 45%, var(--ember) 80%, var(--dawn) 100%); }
+  .sky-sun { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: calc(var(--p) * var(--p));
+    background: radial-gradient(70% 55% at 50% 108%, rgba(254,221,0,0.70) 0%, rgba(242,166,90,0.5) 35%, transparent 70%); }
+  .page { position: relative; z-index: 1; }
+  .wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+
+  /* Top bar */
+  .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+    background: rgba(11, 6, 69, 0.72); backdrop-filter: blur(10px); border-bottom: 1px solid var(--stone-edge); }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 10px; }
+  .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 600; letter-spacing: 0.02em; font-size: 15px; }
+  .brand img { width: 34px; height: auto; }
+  .top nav { display: flex; gap: 4px 18px; flex-wrap: wrap; justify-content: flex-end; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; }
+  .top nav a { text-decoration: none; color: var(--bone-dim); padding: 6px 2px; }
+  .top nav a:hover { color: var(--gold); }
+
+  /* Type */
+  .place { font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin: 0 0 18px; line-height: 1.5; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.04; text-wrap: balance; margin: 0; letter-spacing: -0.014em; }
+  h1 { font-size: clamp(36px, 5.2vw, 66px); font-variation-settings: "opsz" 144; max-width: 15ch; }
+  h2 { font-size: clamp(30px, 4.4vw, 52px); font-variation-settings: "opsz" 120; max-width: 18ch; }
+  h3 { font-size: 22px; }
+  .lede { font-family: var(--display); font-style: italic; font-weight: 300; font-size: clamp(20px, 2.4vw, 27px); line-height: 1.35; color: var(--bone-dim); margin: 0; max-width: 32ch; }
+  p { margin: 0; }
+  .prose p { max-width: 58ch; }
+  .prose p + p { margin-top: 1.1em; }
+  .story p { font-family: var(--display); font-weight: 300; font-size: clamp(19px, 2vw, 22px); line-height: 1.45; max-width: 46ch; }
+  .story p + p { margin-top: 0.9em; }
+  .callback { font-family: var(--display); font-style: italic; font-weight: 300; font-size: clamp(19px, 2.2vw, 25px); color: var(--dawn); margin: 14px 0 26px; max-width: 30ch; line-height: 1.35; }
+
+  /* Buttons: one loud way out per door, like the long-arrow buttons on istoria.com */
+  .cta { display: inline-flex; align-items: center; gap: 14px; background: var(--gold); color: var(--night); text-decoration: none;
+    font-weight: 600; font-size: 16px; padding: 16px 24px; border-radius: 999px; box-shadow: 0 10px 44px rgba(254,221,0,0.22);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, gap 0.2s ease; }
+  .cta:hover, .cta:focus-visible { transform: translateY(-2px); box-shadow: 0 16px 54px rgba(254,221,0,0.34); gap: 20px; }
+  .cta svg { width: 26px; height: 12px; flex: none; }
+  .cta.quiet { background: transparent; color: var(--bone); box-shadow: none; border: 1px solid var(--stone-edge); }
+  .cta.quiet:hover { border-color: var(--gold); color: var(--gold); box-shadow: none; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center; margin-top: 30px; }
+  .note { display: block; margin-top: 16px; font-size: 15px; color: var(--bone-dim); max-width: 42ch; }
+
+  /* Hero: pinned photo with the purpose statement */
+  .hero { position: relative; min-height: 86vh; display: grid; align-items: end; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; transform: scale(1.06); }
+  .hero-bg::after { content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(11,6,69,0.88) 0%, rgba(11,6,69,0.6) 45%, rgba(11,6,69,0.1) 85%),
+                linear-gradient(180deg, rgba(11,6,69,0.35) 0%, rgba(11,6,69,0) 30%, var(--night) 100%); }
+  .hero .wrap { position: relative; z-index: 1; padding-block: 18vh 9vh; display: grid; gap: 24px; }
+  .hero h1 { text-shadow: 0 2px 30px rgba(0,0,0,0.5); }
+  .hero .lede { color: var(--bone); text-shadow: 0 2px 24px rgba(0,0,0,0.6); }
+  .hero-hint { font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--bone-faint); margin-top: 20px; }
+
+  /* Sections */
+  section { padding-block: 12vh; }
+  .intro .wrap { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+  .portrait { position: relative; max-width: 380px; margin-inline: auto; width: 100%; }
+  .portrait img { border-radius: 6px 40px 6px 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.55); }
+  .portrait figcaption { margin-top: 12px; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bone-faint); }
+
+  /* Doors: the hub */
+  .doors-sec { padding-block: 6vh 12vh; }
+  .doors { list-style: none; padding: 0; margin: 40px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+  .door { display: grid; gap: 14px; align-content: start; padding: 26px 24px 24px; min-height: 100%;
+    background: var(--stone); border: 1px solid var(--stone-edge); border-radius: 6px 28px 6px 28px; text-decoration: none;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease; }
+  .door:hover, .door:focus-visible { transform: translateY(-4px); border-color: var(--gold); background: rgba(243,238,228,0.1); }
+  .door svg.mark { width: 40px; height: 40px; color: var(--gold); }
+  .door h3 { font-size: 24px; }
+  .door p { font-size: 15.5px; color: var(--bone-dim); line-height: 1.5; }
+  .door .go { margin-top: auto; display: inline-flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: var(--gold); }
+  .door .go svg { width: 26px; height: 12px; }
+
+  /* Story rows, alternating sides */
+  .row .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+  .row.flip .wrap > .pic { order: 2; }
+  .pic { position: relative; }
+  .pic img { width: 100%; height: auto; border-radius: 6px 40px 6px 40px; box-shadow: 0 30px 70px rgba(0,0,0,0.6); }
+  .pic.book { display: grid; justify-items: center; }
+  .pic.book img { max-width: 360px; border-radius: 4px; box-shadow: 0 40px 70px rgba(0,0,0,0.7), 0 0 0 1px var(--stone-edge); }
+  .pic.walker { display: grid; justify-items: center; }
+  .pic.walker img { max-width: 420px; box-shadow: none; border-radius: 0; filter: drop-shadow(0 26px 40px rgba(0,0,0,0.6)); }
+  .pic .cap { position: absolute; left: 18px; bottom: 16px; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--bone); font-weight: 600; text-shadow: 0 2px 16px rgba(0,0,0,0.9); }
+  .facts { list-style: none; padding: 0; margin: 26px 0 0; display: grid; gap: 8px; font-size: 15.5px; color: var(--bone-dim); }
+  .facts li { display: grid; grid-template-columns: 14px 1fr; gap: 12px; align-items: baseline; }
+  .facts li::before { content: ""; width: 14px; height: 2px; background: var(--terracotta); transform: translateY(-4px); }
+
+  /* Interludes: a photo and almost no words */
+  .interlude { position: relative; height: 64vh; min-height: 380px; overflow: hidden; margin-block: 4vh; }
+  .interlude img { width: 100%; height: 100%; object-fit: cover; object-position: center 45%; transform: scale(1.1); }
+  .interlude::before { content: ""; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(180deg, var(--night) 0%, rgba(11,6,69,0.25) 30%, rgba(11,6,69,0.25) 70%, var(--night) 100%); mix-blend-mode: multiply; }
+  .interlude::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, var(--night), transparent 22%, transparent 78%, var(--night)); }
+  .interlude .cap { position: absolute; left: 50%; bottom: 14%; transform: translateX(-50%); z-index: 2; font-family: var(--display); font-style: italic; font-weight: 300;
+    font-size: clamp(20px, 2.6vw, 30px); color: var(--bone); text-shadow: 0 2px 20px rgba(0,0,0,0.8); white-space: nowrap; }
+
+  /* Close */
+  .close { text-align: center; padding-block: 14vh 6vh; }
+  .close h2 { margin-inline: auto; max-width: 20ch; }
+  .close .lede { margin: 20px auto 0; }
+  .social { list-style: none; padding: 0; margin: 40px 0 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; }
+  .social a { text-decoration: none; color: var(--bone-dim); }
+  .social a:hover { color: var(--gold); }
+  footer { border-top: 1px solid var(--stone-edge); padding-block: 28px 40px; font-size: 14px; color: var(--bone-dim); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; }
+  footer .mail { color: var(--bone); user-select: all; }
+
+  /* Reveal: everything is visible at rest; JS adds .pre only to things below the fold, then lets them rise. */
+  .js .rv.pre { opacity: 0.001; transform: translateY(22px); }
+  .js .rv { transition: opacity 0.9s cubic-bezier(.2,.7,.2,1), transform 0.9s cubic-bezier(.2,.7,.2,1); }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .js .rv, .js .rv.pre { opacity: 1; transform: none; transition: none; }
+    .cta, .door { transition: none; }
+  }
+
+  @media (max-width: 760px) {
+    .top nav { display: none; }
+    .hero { min-height: 78vh; }
+    .hero .wrap { padding-block: 12vh 8vh; }
+    section { padding-block: 9vh; }
+    .intro .wrap, .row .wrap { grid-template-columns: 1fr; }
+    .row.flip .wrap > .pic { order: 0; }
+    .portrait { max-width: 300px; }
+    .interlude { height: 48vh; }
+    .interlude .cap { white-space: normal; width: calc(100% - 32px); text-align: center; }
+  }
+</style>
+
+</head>
+<body>
+<div class="sky" aria-hidden="true"></div>
+<div class="sky-ember" aria-hidden="true"></div>
+<div class="sky-sun" aria-hidden="true"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="arrow" viewBox="0 0 26 12"><path d="M0 6h23M18 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-book" viewBox="0 0 40 40"><path d="M6 8h11a4 4 0 0 1 4 4v22a3 3 0 0 0-3-3H6zM34 8H23a4 4 0 0 0-4 4v22a3 3 0 0 1 3-3h12z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-walk" viewBox="0 0 40 40"><circle cx="22" cy="7" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M14 36l5-12-3-5-5 4M16 19l4-5 5 2 3 6 5 2M19 24l5 4 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-steps" viewBox="0 0 40 40"><path d="M5 34h8v-8h8v-8h8v-8h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-note" viewBox="0 0 40 40"><path d="M8 8h24v24H8zM13 15h14M13 20h14M13 25h9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-home" viewBox="0 0 40 40"><path d="M6 20L20 8l14 12M10 17v15h20V17M17 32v-9h6v9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="page">
+
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="#top"><img src="assets/logo.webp" alt="CaminoLife" width="34" height="40"> Camino Coach Dave</a>
+      <nav aria-label="Doors">
+        <a href="#book">Book</a><a href="#coaching">Coaching</a><a href="#retreats">Retreats</a><a href="#newsletter">Newsletter</a><a href="#stay">Stay</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="hero-bg"><img src="assets/finisterre.jpg" alt="" fetchpriority="high"></div>
+    <div class="wrap">
+      <p class="place">Dave Hall, Camino Coach <br><small style="font-weight:500;letter-spacing:.1em;text-transform:none;color:var(--bone-dim)">Milwaukee, Wisconsin</small></p>
+      <h1>Walking alongside a million people on pilgrimage to wholeness.</h1>
+      <p class="lede">I walked the Camino and it changed how I grieve, how I recover, and how I live. Now I help others find that same path, wherever they're starting from.</p>
+      <div class="actions">
+        <a class="cta" href="#doors">Pick your door <svg><use href="#arrow"/></svg></a>
+      </div>
+      <p class="hero-hint">Five doors, one path</p>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="wrap">
+      <div class="prose rv">
+        <p class="place">Buen Camino</p>
+        <h2>I'm Dave Hall.</h2>
+        <p class="lede" style="margin-top:16px">Camino life coach, author, pilgrim, and a guy from Milwaukee who found out the hard way that the road has something to teach us if we're willing to walk it.</p>
+        <p style="margin-top:22px">Camino del Norte in 2019. The Portuguese Coastal route in 2023. In May 2024, León to Santiago with a guitar on my back, writing songs with pilgrims along the way. Somewhere in there the walk stopped being a trip and became a way of living.</p>
+        <p>This site is the hub for everything I'm building. Pick the door that's calling you. I'll meet you on the path.</p>
+      </div>
+      <figure class="portrait rv">
+        <img src="assets/dave.jpg" alt="Dave Hall on the Camino, smiling, with a travel guitar" width="401" height="549">
+        <figcaption>Somewhere on the Camino</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="doors-sec" id="doors">
+    <div class="wrap">
+      <p class="place rv">The five doors</p>
+      <h2 class="rv">One path. Pick the door that's calling you.</h2>
+      <ul class="doors">
+        <li><a class="door rv" href="#book"><svg class="mark"><use href="#i-book"/></svg><h3>The Book</h3><p>Walking Toward Fire. My story of grief, recovery, and discovering the Camino life.</p><span class="go">Read <svg><use href="#arrow"/></svg></span></a></li>
+        <li><a class="door rv" href="#coaching"><svg class="mark"><use href="#i-walk"/></svg><h3>The Coaching</h3><p>CaminoLife. Wilgrim cohorts and an app that walks with you through all three chapters.</p><span class="go">Walk with us <svg><use href="#arrow"/></svg></span></a></li>
+        <li><a class="door rv" href="#retreats"><svg class="mark"><use href="#i-steps"/></svg><h3>The Retreats</h3><p>12 Steps on the Camino. A nine-day recovery pilgrimage on the Wisconsin Way.</p><span class="go">See the nine days <svg><use href="#arrow"/></svg></span></a></li>
+        <li><a class="door rv" href="#newsletter"><svg class="mark"><use href="#i-note"/></svg><h3>The Newsletter</h3><p>Notes from the road, straight to your inbox. Free, and honest.</p><span class="go">Subscribe <svg><use href="#arrow"/></svg></span></a></li>
+        <li><a class="door rv" href="#stay"><svg class="mark"><use href="#i-home"/></svg><h3>The Stay</h3><p>Home Port. A place to rest in Port Washington, four blocks from Lake Michigan.</p><span class="go">Book a stay <svg><use href="#arrow"/></svg></span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="row" id="book">
+    <div class="wrap">
+      <div class="pic book rv"><img src="assets/cover.jpg" alt="Walking Toward Fire book cover" width="724" height="1086"></div>
+      <div class="story rv">
+        <p class="place">The Book</p>
+        <h2>Walking Toward Fire</h2>
+        <p class="callback">Every step of the walk, written down.</p>
+        <p>This is the book I had to write.</p>
+        <p>Walking Toward Fire is the honest story of what the Camino taught me about grief, recovery, and what it means to live a Camino life. Not just for 500 miles across Spain, but every ordinary Tuesday at home.</p>
+        <p>It's not a guidebook. It's one pilgrim's story, told straight, in the hope that it helps you tell yours.</p>
+        <ul class="facts">
+          <li>Dave's first book. Coming late 2026.</li>
+          <li>Read the prologue now, and get the first chapter when it's ready.</li>
+        </ul>
+        <div class="actions"><a class="cta" href="https://walkingtowardfire.com" target="_blank" rel="noopener">Read the prologue <svg><use href="#arrow"/></svg></a></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="interlude" aria-hidden="true"><img src="assets/meseta.jpg" alt=""><span class="cap">The Camino isn't a trip. It's a way of living.</span></div>
+
+  <section class="row flip" id="coaching">
+    <div class="wrap">
+      <div class="pic walker rv"><img src="assets/km0.webp" alt="A pilgrim at kilometer zero" width="875" height="1200"></div>
+      <div class="story rv">
+        <p class="place">The Coaching</p>
+        <h2>Walk your own Camino, with company.</h2>
+        <p class="callback">Your Camino, with a guide beside you.</p>
+        <p>CaminoLife is where pilgrim coaching meets everyday life. It's for people who sense there's a path for them, maybe a real walk across Spain, maybe a season they're trying to get through, and who would rather not walk it alone.</p>
+        <p>Small groups of first-time pilgrims, we call them Wilgrims, prepare together before the walk: mental, awareness, physical, spiritual. And the CaminoLife app walks with you through all three chapters, the Dream, the Pilgrimage, and the Homecoming.</p>
+        <ul class="facts">
+          <li>The CaminoLife app opens Spring 2027. The waitlist is open now.</li>
+          <li>Wilgrim cohorts: a few Tuesday evenings, a small group, before you ever lace your boots.</li>
+        </ul>
+        <div class="actions">
+          <a class="cta" href="https://caminolife.app" target="_blank" rel="noopener">Join the app waitlist <svg><use href="#arrow"/></svg></a>
+          <a class="cta quiet" href="https://caminolife.app/wilgrims" target="_blank" rel="noopener">Meet the Wilgrims <svg><use href="#arrow"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="row" id="retreats">
+    <div class="wrap">
+      <div class="pic rv"><img src="assets/holy-hill.jpg" alt="Pilgrims walking toward Holy Hill Basilica in Wisconsin" width="1294" height="776"><span class="cap">The Wisconsin Way</span></div>
+      <div class="story rv">
+        <p class="place">The Retreats</p>
+        <h2>12 Steps on the Camino</h2>
+        <p class="callback">Some griefs can't be talked through. They have to be walked through.</p>
+        <p>A 12 Step-inspired pilgrimage for grief and addiction recovery. There's a kind of healing that only happens when you put your boots on the actual ground, and do the honest work side by side with a small group.</p>
+        <p>Nine days on the Wisconsin Way, from the Champion Shrine to Holy Hill Basilica. Five walking days, about 56 miles, all Twelve Steps in order on the road.</p>
+        <ul class="facts">
+          <li>April 16 to 24, 2027.</li>
+          <li>Eleven pilgrims, led by Dave Hall.</li>
+          <li>You don't buy a seat. You apply.</li>
+        </ul>
+        <div class="actions"><a class="cta" href="https://12stepsonthecamino.com" target="_blank" rel="noopener">See all nine days <svg><use href="#arrow"/></svg></a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="row flip" id="newsletter">
+    <div class="wrap">
+      <div class="pic rv"><img src="assets/galicia.jpg" alt="Green hills of Galicia under a soft sky" width="1600" height="685"></div>
+      <div class="story rv">
+        <p class="place">The Newsletter</p>
+        <h2>Notes from the road</h2>
+        <p class="callback">Straight from a pilgrim's notebook to your inbox.</p>
+        <p>This is where I write most often: short, honest notes from a life that's still being walked.</p>
+        <p>Some letters are about the Camino. Some are about grief, or recovery, or what I'm learning as I build CaminoLife and finish Walking Toward Fire. Some are just a Tuesday thought I couldn't keep to myself.</p>
+        <p>No spam, no salesy nonsense. Just a pilgrim writing to other pilgrims.</p>
+        <div class="actions"><a class="cta" href="https://caminocoachdave.substack.com" target="_blank" rel="noopener">Subscribe on Substack <svg><use href="#arrow"/></svg></a></div>
+        <span class="note">Free. Unsubscribe anytime. The road keeps going either way.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="row" id="stay">
+    <div class="wrap">
+      <div class="pic rv"><img src="assets/homeport.jpg" alt="The front porch of Home Port Vacation Escapes in Port Washington, Wisconsin" width="1600" height="900"><span class="cap">Port Washington, Wisconsin</span></div>
+      <div class="story rv">
+        <p class="place">The Stay</p>
+        <h2>Rest before you walk again.</h2>
+        <p class="callback">Every pilgrim needs a home port.</p>
+        <p>Even pilgrims need somewhere to lay their pack down.</p>
+        <p>Home Port Vacation Escapes is our 1865 Cream City brick home in Port Washington, Wisconsin, four blocks from Lake Michigan. Take the whole house, or either side on its own. Bring the family. Bring the dog.</p>
+        <p>It's not a retreat center and it's not coaching. It's a good place to rest, reset, and breathe before the next stretch of the road, run by people who understand that rest is part of the walk.</p>
+        <div class="actions"><a class="cta" href="https://homeportvacationescapes.com" target="_blank" rel="noopener">Book your stay <svg><use href="#arrow"/></svg></a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="close">
+    <div class="wrap">
+      <p class="place rv">Ultreia</p>
+      <h2 class="rv">Because the Camino isn't a trip. It's a way of living.</h2>
+      <p class="lede rv">Pick the door that's calling you. I'll meet you on the path.</p>
+      <ul class="social rv">
+        <li><a href="https://www.facebook.com/caminocoachdave" target="_blank" rel="noopener">Facebook</a></li>
+        <li><a href="https://www.instagram.com/caminocoachdave" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.tiktok.com/@caminocoachdave" target="_blank" rel="noopener">TikTok</a></li>
+        <li><a href="https://x.com/caminocoachdave" target="_blank" rel="noopener">X</a></li>
+        <li><a href="https://www.linkedin.com/in/davidahall2" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://caminocoachdave.substack.com" target="_blank" rel="noopener">Substack</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>Dave Hall, Camino Life Coach &middot; caminocoachdave.com</span>
+      <span>Write to Dave: <span class="mail">dave@caminolife.app</span></span>
+      <span>&copy; 2026 CaminoLife Coaching, LLC</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Sky progress: 0 at the top, 1 at the bottom.
+  function sky() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    root.style.setProperty('--p', p.toFixed(3));
+  }
+  sky();
+  window.addEventListener('scroll', sky, { passive: true });
+  window.addEventListener('resize', sky);
+
+  // Reveal below-the-fold blocks as they arrive. Anything already on screen stays as it is.
+  if (!reduce && 'IntersectionObserver' in window) {
+    root.classList.add('js');
+    var items = Array.prototype.slice.call(document.querySelectorAll('.rv'));
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.remove('pre'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    items.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top > window.innerHeight) el.classList.add('pre');
+      io.observe(el);
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
