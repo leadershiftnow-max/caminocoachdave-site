@@ -119,15 +119,19 @@
   /* The walk: Dave stays put in the middle of the road while the five paths pass him, left then right. */
   .walk { position: relative; padding-block: 4vh 2vh; }
   .walk .wrap { position: relative; }
-  .walker { position: sticky; top: 22vh; height: 60vh; display: flex; justify-content: center; align-items: flex-end; pointer-events: none; z-index: 1; margin-bottom: -60vh; }
-  .walker img { height: 100%; width: auto; max-width: 24%; object-fit: contain; object-position: bottom; filter: drop-shadow(0 26px 40px rgba(0,0,0,0.6)); }
+  .walker { position: sticky; top: 20vh; height: 62vh; pointer-events: none; z-index: 1; margin-bottom: -62vh; }
+  .walker .fig { width: 100%; height: 100%; display: flex; justify-content: center; align-items: flex-end;
+    transition: transform 1.1s cubic-bezier(.2,.7,.2,1); }
+  .walk[data-side="r"] .fig { transform: translateX(31%); }
+  .walk[data-side="l"] .fig { transform: translateX(-31%); }
+  .walker img { height: 100%; width: auto; max-width: 26%; object-fit: contain; object-position: bottom; filter: drop-shadow(0 26px 40px rgba(0,0,0,0.6)); }
   .beat { position: relative; z-index: 2; min-height: 90vh; display: flex; align-items: center; padding-block: 5vh; }
-  .beat > .story { width: min(44ch, 36%); }
+  .beat > .story { width: min(62ch, 58%); }
   .beat.l { justify-content: flex-start; }
   .beat.r { justify-content: flex-end; }
   .beat .story p, .beat .facts, .beat .note { text-shadow: 0 2px 24px rgba(11,6,69,0.95); }
   .beat .story h2 { text-shadow: 0 2px 30px rgba(11,6,69,0.95); }
-  .cover { width: 150px; margin: 0 0 24px; border-radius: 4px; box-shadow: 0 30px 60px rgba(0,0,0,0.7), 0 0 0 1px var(--stone-edge); }
+  .cover { width: 200px; margin: 0 0 24px; border-radius: 4px; box-shadow: 0 30px 60px rgba(0,0,0,0.7), 0 0 0 1px var(--stone-edge); }
   .postcard { position: relative; margin: 0 0 24px; }
   .postcard img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px 32px 6px 32px; box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
   .postcard .cap { position: absolute; left: 16px; bottom: 12px; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--bone); font-weight: 600; text-shadow: 0 2px 16px rgba(0,0,0,0.9); }
@@ -176,7 +180,8 @@
     .hero-copy { padding: 8px 16px 48px; }
     section { padding-block: 9vh; }
     .intro .wrap { grid-template-columns: 1fr; }
-    .walker { top: 56vh; height: 38vh; margin-bottom: -38vh; justify-content: flex-end; transform: translateX(10%); opacity: 0.9; }
+    .walker { top: 56vh; height: 38vh; margin-bottom: -38vh; opacity: 0.9; }
+    .walker .fig, .walk[data-side="r"] .fig, .walk[data-side="l"] .fig { justify-content: flex-end; transform: translateX(10%); }
     .walker img { max-width: 60%; }
     .beat { min-height: 0; padding-block: 10vh; }
     .beat > .story { width: 100%; }
@@ -258,9 +263,9 @@
     </div>
   </section>
 
-  <section class="walk" aria-label="The five paths">
+  <section class="walk" aria-label="The five paths" data-side="r">
     <div class="wrap">
-      <div class="walker" aria-hidden="true"><img src="assets/walker.webp" alt="" width="589" height="1200"></div>
+      <div class="walker" aria-hidden="true"><div class="fig"><img src="assets/walker.webp" alt="" width="589" height="1200"></div></div>
 
       <div class="beat l" id="book">
         <div class="story rv from-l">
@@ -384,6 +389,17 @@
   sky();
   window.addEventListener('scroll', sky, { passive: true });
   window.addEventListener('resize', sky);
+
+  // Dave steps to the side opposite the text of whichever path is in the middle of the screen.
+  var walk = document.querySelector('.walk');
+  if (walk && 'IntersectionObserver' in window) {
+    var side = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) walk.setAttribute('data-side', e.target.classList.contains('l') ? 'r' : 'l');
+      });
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+    Array.prototype.forEach.call(walk.querySelectorAll('.beat'), function (b) { side.observe(b); });
+  }
 
   // Reveal below-the-fold blocks as they arrive. Anything already on screen stays as it is.
   if (!reduce && 'IntersectionObserver' in window) {
