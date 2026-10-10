@@ -116,16 +116,21 @@
   .door .go { margin-top: auto; display: inline-flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: var(--gold); }
   .door .go svg { width: 26px; height: 12px; }
 
-  /* Story rows, alternating sides */
-  .row .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
-  .row.flip .wrap > .pic { order: 2; }
-  .pic { position: relative; }
-  .pic img { width: 100%; height: auto; border-radius: 6px 40px 6px 40px; box-shadow: 0 30px 70px rgba(0,0,0,0.6); }
-  .pic.book { display: grid; justify-items: center; }
-  .pic.book img { max-width: 360px; border-radius: 4px; box-shadow: 0 40px 70px rgba(0,0,0,0.7), 0 0 0 1px var(--stone-edge); }
-  .pic.walker { display: grid; justify-items: center; }
-  .pic.walker img { max-width: 420px; box-shadow: none; border-radius: 0; filter: drop-shadow(0 26px 40px rgba(0,0,0,0.6)); }
-  .pic .cap { position: absolute; left: 18px; bottom: 16px; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--bone); font-weight: 600; text-shadow: 0 2px 16px rgba(0,0,0,0.9); }
+  /* The walk: Dave stays put in the middle of the road while the five paths pass him, left then right. */
+  .walk { position: relative; padding-block: 4vh 2vh; }
+  .walk .wrap { position: relative; }
+  .walker { position: sticky; top: 13vh; height: 72vh; display: flex; justify-content: center; align-items: flex-end; pointer-events: none; z-index: 1; margin-bottom: -72vh; }
+  .walker img { height: 100%; width: auto; max-width: none; filter: drop-shadow(0 26px 40px rgba(0,0,0,0.6)); }
+  .beat { position: relative; z-index: 2; min-height: 90vh; display: flex; align-items: center; padding-block: 5vh; }
+  .beat > .story { width: min(44ch, 100%); }
+  .beat.l { justify-content: flex-start; }
+  .beat.r { justify-content: flex-end; }
+  .beat .story p, .beat .facts, .beat .note { text-shadow: 0 2px 24px rgba(11,6,69,0.95); }
+  .beat .story h2 { text-shadow: 0 2px 30px rgba(11,6,69,0.95); }
+  .cover { width: 150px; margin: 0 0 24px; border-radius: 4px; box-shadow: 0 30px 60px rgba(0,0,0,0.7), 0 0 0 1px var(--stone-edge); }
+  .postcard { position: relative; margin: 0 0 24px; }
+  .postcard img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px 32px 6px 32px; box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
+  .postcard .cap { position: absolute; left: 16px; bottom: 12px; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--bone); font-weight: 600; text-shadow: 0 2px 16px rgba(0,0,0,0.9); }
   .facts { list-style: none; padding: 0; margin: 26px 0 0; display: grid; gap: 8px; font-size: 15.5px; color: var(--bone-dim); }
   .facts li { display: grid; grid-template-columns: 14px 1fr; gap: 12px; align-items: baseline; }
   .facts li::before { content: ""; width: 14px; height: 2px; background: var(--terracotta); transform: translateY(-4px); }
@@ -152,7 +157,9 @@
 
   /* Reveal: everything is visible at rest; JS adds .pre only to things below the fold, then lets them rise. */
   .js .rv.pre { opacity: 0.001; transform: translateY(22px); }
-  .js .rv { transition: opacity 0.9s cubic-bezier(.2,.7,.2,1), transform 0.9s cubic-bezier(.2,.7,.2,1); }
+  .js .rv.from-l.pre { transform: translateX(-80px); }
+  .js .rv.from-r.pre { transform: translateX(80px); }
+  .js .rv { transition: opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1); }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .js .rv, .js .rv.pre { opacity: 1; transform: none; transition: none; }
@@ -168,8 +175,13 @@
     .hero-photo::after { background: linear-gradient(180deg, rgba(11,6,69,0) 70%, var(--night) 100%); }
     .hero-copy { padding: 8px 16px 48px; }
     section { padding-block: 9vh; }
-    .intro .wrap, .row .wrap { grid-template-columns: 1fr; }
-    .row.flip .wrap > .pic { order: 0; }
+    .intro .wrap { grid-template-columns: 1fr; }
+    .walker { top: 52vh; height: 42vh; margin-bottom: -42vh; justify-content: flex-end; transform: translateX(14%); opacity: 0.92; }
+    .beat { min-height: 0; padding-block: 10vh; }
+    .beat > .story { width: 100%; }
+    .beat.r { justify-content: flex-start; }
+    .js .rv.from-l.pre { transform: translateX(-40px); }
+    .js .rv.from-r.pre { transform: translateX(40px); }
     .portrait { max-width: 300px; }
     .interlude { height: 48vh; }
     .interlude .cap { white-space: normal; width: calc(100% - 32px); text-align: center; }
@@ -245,97 +257,91 @@
     </div>
   </section>
 
-  <section class="row" id="book">
+  <section class="walk" aria-label="The five paths">
     <div class="wrap">
-      <div class="pic book rv"><img src="assets/cover.jpg" alt="Walking Toward Fire book cover" width="724" height="1086"></div>
-      <div class="story rv">
-        <p class="place">The Book</p>
-        <h2>Walking Toward Fire</h2>
-        <p class="callback">Every step of the walk, written down.</p>
-        <p>This is the book I had to write.</p>
-        <p>Walking Toward Fire is the honest story of what the Camino taught me about grief, recovery, and what it means to live a Camino life. Not just for 500 miles across Spain, but every ordinary Tuesday at home.</p>
-        <p>It's not a guidebook. It's one pilgrim's story, told straight, in the hope that it helps you tell yours.</p>
-        <ul class="facts">
-          <li>Dave's first book. Coming late 2026.</li>
-          <li>Read the prologue now, and get the first chapter when it's ready.</li>
-        </ul>
-        <div class="actions"><a class="cta" href="https://walkingtowardfire.com" target="_blank" rel="noopener">Read the prologue <svg><use href="#arrow"/></svg></a></div>
+      <div class="walker" aria-hidden="true"><img src="assets/km0.webp" alt="" width="875" height="1200"></div>
+
+      <div class="beat l" id="book">
+        <div class="story rv from-l">
+          <img class="cover" src="assets/cover.jpg" alt="Walking Toward Fire book cover" width="724" height="1086">
+          <p class="place">The Book</p>
+          <h2>Walking Toward Fire</h2>
+          <p class="callback">Every step of the walk, written down.</p>
+          <p>This is the book I had to write.</p>
+          <p>Walking Toward Fire is the honest story of what the Camino taught me about grief, recovery, and what it means to live a Camino life. Not just for 500 miles across Spain, but every ordinary Tuesday at home.</p>
+          <p>It's not a guidebook. It's one pilgrim's story, told straight, in the hope that it helps you tell yours.</p>
+          <ul class="facts">
+            <li>Dave's first book. Coming late 2026.</li>
+            <li>Read the prologue now, and get the first chapter when it's ready.</li>
+          </ul>
+          <div class="actions"><a class="cta" href="https://walkingtowardfire.com" target="_blank" rel="noopener">Read the prologue <svg><use href="#arrow"/></svg></a></div>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <div class="interlude" aria-hidden="true"><img src="assets/meseta.jpg" alt=""><span class="cap">The Camino isn't a trip. It's a way of living.</span></div>
+      <div class="beat r" id="coaching">
+        <div class="story rv from-r">
+          <p class="place">The Coaching</p>
+          <h2>Walk your own Camino, with company.</h2>
+          <p class="callback">Your Camino, with a guide beside you.</p>
+          <p>CaminoLife is where pilgrim coaching meets everyday life. It's for people who sense there's a path for them, maybe a real walk across Spain, maybe a season they're trying to get through, and who would rather not walk it alone.</p>
+          <p>Small groups of first-time pilgrims, we call them Wilgrims, prepare together before the walk: mental, awareness, physical, spiritual. And the CaminoLife app walks with you through all three chapters, the Dream, the Pilgrimage, and the Homecoming.</p>
+          <ul class="facts">
+            <li>The CaminoLife app opens Spring 2027. The waitlist is open now.</li>
+            <li>Wilgrim cohorts: a few Tuesday evenings, a small group, before you ever lace your boots.</li>
+          </ul>
+          <div class="actions">
+            <a class="cta" href="https://caminolife.app" target="_blank" rel="noopener">Join the app waitlist <svg><use href="#arrow"/></svg></a>
+            <a class="cta quiet" href="https://caminolife.app/wilgrims" target="_blank" rel="noopener">Meet the Wilgrims <svg><use href="#arrow"/></svg></a>
+          </div>
+        </div>
+      </div>
 
-  <section class="row flip" id="coaching">
-    <div class="wrap">
-      <div class="pic walker rv"><img src="assets/km0.webp" alt="A pilgrim at kilometer zero" width="875" height="1200"></div>
-      <div class="story rv">
-        <p class="place">The Coaching</p>
-        <h2>Walk your own Camino, with company.</h2>
-        <p class="callback">Your Camino, with a guide beside you.</p>
-        <p>CaminoLife is where pilgrim coaching meets everyday life. It's for people who sense there's a path for them, maybe a real walk across Spain, maybe a season they're trying to get through, and who would rather not walk it alone.</p>
-        <p>Small groups of first-time pilgrims, we call them Wilgrims, prepare together before the walk: mental, awareness, physical, spiritual. And the CaminoLife app walks with you through all three chapters, the Dream, the Pilgrimage, and the Homecoming.</p>
-        <ul class="facts">
-          <li>The CaminoLife app opens Spring 2027. The waitlist is open now.</li>
-          <li>Wilgrim cohorts: a few Tuesday evenings, a small group, before you ever lace your boots.</li>
-        </ul>
-        <div class="actions">
-          <a class="cta" href="https://caminolife.app" target="_blank" rel="noopener">Join the app waitlist <svg><use href="#arrow"/></svg></a>
-          <a class="cta quiet" href="https://caminolife.app/wilgrims" target="_blank" rel="noopener">Meet the Wilgrims <svg><use href="#arrow"/></svg></a>
+      <div class="beat l" id="retreats">
+        <div class="story rv from-l">
+          <div class="postcard"><img src="assets/holy-hill.jpg" alt="Pilgrims walking toward Holy Hill Basilica in Wisconsin" width="1294" height="776"><span class="cap">The Wisconsin Way</span></div>
+          <p class="place">The Retreats</p>
+          <h2>12 Steps on the Camino</h2>
+          <p class="callback">Some griefs can't be talked through. They have to be walked through.</p>
+          <p>A 12 Step-inspired pilgrimage for grief and addiction recovery. There's a kind of healing that only happens when you put your boots on the actual ground, and do the honest work side by side with a small group.</p>
+          <p>Nine days on the Wisconsin Way, from the Champion Shrine to Holy Hill Basilica. Five walking days, about 56 miles, all Twelve Steps in order on the road.</p>
+          <ul class="facts">
+            <li>April 16 to 24, 2027.</li>
+            <li>Eleven pilgrims, led by Dave Hall.</li>
+            <li>You don't buy a seat. You apply.</li>
+          </ul>
+          <div class="actions"><a class="cta" href="https://12stepsonthecamino.com" target="_blank" rel="noopener">See all nine days <svg><use href="#arrow"/></svg></a></div>
+        </div>
+      </div>
+
+      <div class="beat r" id="newsletter">
+        <div class="story rv from-r">
+          <p class="place">The Newsletter</p>
+          <h2>Notes from the road</h2>
+          <p class="callback">Straight from a pilgrim's notebook to your inbox.</p>
+          <p>This is where I write most often: short, honest notes from a life that's still being walked.</p>
+          <p>Some letters are about the Camino. Some are about grief, or recovery, or what I'm learning as I build CaminoLife and finish Walking Toward Fire. Some are just a Tuesday thought I couldn't keep to myself.</p>
+          <p>No spam, no salesy nonsense. Just a pilgrim writing to other pilgrims.</p>
+          <div class="actions"><a class="cta" href="https://caminocoachdave.substack.com" target="_blank" rel="noopener">Subscribe on Substack <svg><use href="#arrow"/></svg></a></div>
+          <span class="note">Free. Unsubscribe anytime. The road keeps going either way.</span>
+        </div>
+      </div>
+
+      <div class="beat l" id="stay">
+        <div class="story rv from-l">
+          <div class="postcard"><img src="assets/homeport.jpg" alt="The front porch of Home Port Vacation Escapes in Port Washington, Wisconsin" width="1600" height="900"><span class="cap">Port Washington, Wisconsin</span></div>
+          <p class="place">The Stay</p>
+          <h2>Rest before you walk again.</h2>
+          <p class="callback">Every pilgrim needs a home port.</p>
+          <p>Even pilgrims need somewhere to lay their pack down.</p>
+          <p>Home Port Vacation Escapes is our 1865 Cream City brick home in Port Washington, Wisconsin, four blocks from Lake Michigan. Take the whole house, or either side on its own. Bring the family. Bring the dog.</p>
+          <p>It's not a retreat center and it's not coaching. It's a good place to rest, reset, and breathe before the next stretch of the road, run by people who understand that rest is part of the walk.</p>
+          <div class="actions"><a class="cta" href="https://homeportvacationescapes.com" target="_blank" rel="noopener">Book your stay <svg><use href="#arrow"/></svg></a></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="row" id="retreats">
-    <div class="wrap">
-      <div class="pic rv"><img src="assets/holy-hill.jpg" alt="Pilgrims walking toward Holy Hill Basilica in Wisconsin" width="1294" height="776"><span class="cap">The Wisconsin Way</span></div>
-      <div class="story rv">
-        <p class="place">The Retreats</p>
-        <h2>12 Steps on the Camino</h2>
-        <p class="callback">Some griefs can't be talked through. They have to be walked through.</p>
-        <p>A 12 Step-inspired pilgrimage for grief and addiction recovery. There's a kind of healing that only happens when you put your boots on the actual ground, and do the honest work side by side with a small group.</p>
-        <p>Nine days on the Wisconsin Way, from the Champion Shrine to Holy Hill Basilica. Five walking days, about 56 miles, all Twelve Steps in order on the road.</p>
-        <ul class="facts">
-          <li>April 16 to 24, 2027.</li>
-          <li>Eleven pilgrims, led by Dave Hall.</li>
-          <li>You don't buy a seat. You apply.</li>
-        </ul>
-        <div class="actions"><a class="cta" href="https://12stepsonthecamino.com" target="_blank" rel="noopener">See all nine days <svg><use href="#arrow"/></svg></a></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="row flip" id="newsletter">
-    <div class="wrap">
-      <div class="pic rv"><img src="assets/galicia.jpg" alt="Dave Hall on a green hillside in Galicia, trekking poles in hand" width="1600" height="685"></div>
-      <div class="story rv">
-        <p class="place">The Newsletter</p>
-        <h2>Notes from the road</h2>
-        <p class="callback">Straight from a pilgrim's notebook to your inbox.</p>
-        <p>This is where I write most often: short, honest notes from a life that's still being walked.</p>
-        <p>Some letters are about the Camino. Some are about grief, or recovery, or what I'm learning as I build CaminoLife and finish Walking Toward Fire. Some are just a Tuesday thought I couldn't keep to myself.</p>
-        <p>No spam, no salesy nonsense. Just a pilgrim writing to other pilgrims.</p>
-        <div class="actions"><a class="cta" href="https://caminocoachdave.substack.com" target="_blank" rel="noopener">Subscribe on Substack <svg><use href="#arrow"/></svg></a></div>
-        <span class="note">Free. Unsubscribe anytime. The road keeps going either way.</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="row" id="stay">
-    <div class="wrap">
-      <div class="pic rv"><img src="assets/homeport.jpg" alt="The front porch of Home Port Vacation Escapes in Port Washington, Wisconsin" width="1600" height="900"><span class="cap">Port Washington, Wisconsin</span></div>
-      <div class="story rv">
-        <p class="place">The Stay</p>
-        <h2>Rest before you walk again.</h2>
-        <p class="callback">Every pilgrim needs a home port.</p>
-        <p>Even pilgrims need somewhere to lay their pack down.</p>
-        <p>Home Port Vacation Escapes is our 1865 Cream City brick home in Port Washington, Wisconsin, four blocks from Lake Michigan. Take the whole house, or either side on its own. Bring the family. Bring the dog.</p>
-        <p>It's not a retreat center and it's not coaching. It's a good place to rest, reset, and breathe before the next stretch of the road, run by people who understand that rest is part of the walk.</p>
-        <div class="actions"><a class="cta" href="https://homeportvacationescapes.com" target="_blank" rel="noopener">Book your stay <svg><use href="#arrow"/></svg></a></div>
-      </div>
-    </div>
-  </section>
+  <div class="interlude" aria-hidden="true"><img src="assets/meseta.jpg" alt=""><span class="cap">The Camino isn't a trip. It's a way of living.</span></div>
 
   <section class="close">
     <div class="wrap">
