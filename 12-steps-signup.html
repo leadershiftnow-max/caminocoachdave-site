@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>12 Steps Sign-Up</title>
+<meta name="description" content="Private sign-up for accepted pilgrims: 12 Steps on the Camino, The Wisconsin Way, April 16 to 24, 2027.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  /* Private sign-up page for ACCEPTED 12 Steps pilgrims. Unlisted (noindex, linked from nowhere).
+     Dave sends the link after the interview. Same family as privacy.html: one calm column. */
+  :root {
+    --night: #0B0645;
+    --navy: #10069F;
+    --dusk: #3A2470;
+    --terracotta: #C26B4A;
+    --dawn: #F2A65A;
+    --gold: #FEDD00;
+    --bone: #F3EEE4;
+    --bone-dim: rgba(243, 238, 228, 0.74);
+    --bone-faint: rgba(243, 238, 228, 0.42);
+    --stone: rgba(243, 238, 228, 0.07);
+    --stone-edge: rgba(243, 238, 228, 0.18);
+    --field: rgba(11, 6, 69, 0.55);
+    --error: #FFB4A2;
+    --ok: #B8F2C8;
+    --display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    --body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; color: var(--bone); font-family: var(--body); font-size: 17px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+    background: var(--night);
+    background-image: linear-gradient(180deg, var(--night) 0%, var(--navy) 55%, var(--dusk) 100%);
+    background-attachment: fixed; }
+  a { color: var(--gold); }
+  :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+  .wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+  .narrow { width: min(720px, 100% - 32px); margin-inline: auto; }
+  [hidden] { display: none !important; }
+  section, .field, .formerr { scroll-margin-top: 84px; }
+
+  .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+    background: rgba(11, 6, 69, 0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--stone-edge); }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+  .brand { font-family: var(--display); font-weight: 600; font-size: 18px; color: var(--bone); text-decoration: none; }
+  .brand span { color: var(--gold); }
+  .steps { display: flex; gap: 6px; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bone-faint); font-weight: 600; }
+  .steps b { color: var(--gold); font-weight: 600; }
+
+  header.page-head { padding-block: clamp(44px, 9vh, 96px) 8px; }
+  .place { font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin: 0 0 16px; }
+  h1 { font-family: var(--display); font-weight: 600; line-height: 1.05; margin: 0; letter-spacing: -0.014em;
+    font-size: clamp(38px, 7vw, 62px); font-variation-settings: "opsz" 144; }
+  h2 { font-family: var(--display); font-weight: 600; line-height: 1.15; margin: 0 0 12px; letter-spacing: -0.01em;
+    font-size: clamp(24px, 3.4vw, 31px); font-variation-settings: "opsz" 96; }
+  h3 { font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dawn); margin: 26px 0 10px; font-weight: 600; }
+  .lede { font-family: var(--display); font-style: italic; font-weight: 300; font-size: clamp(20px, 2.6vw, 25px);
+    line-height: 1.4; color: var(--bone-dim); margin: 20px 0 0; max-width: 36ch; }
+  p { margin: 0 0 1em; }
+  .muted { color: var(--bone-dim); }
+  .small { font-size: 14px; }
+  section.block { padding-block: clamp(30px, 5vh, 50px); }
+  section.block + section.block { border-top: 1px solid var(--stone-edge); }
+  .num { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%;
+    border: 1px solid var(--gold); color: var(--gold); font-size: 14px; font-weight: 600; margin-right: 10px; vertical-align: 4px; }
+
+  .card { margin-top: 22px; padding: clamp(22px, 4vw, 34px); background: var(--stone); border: 1px solid var(--stone-edge);
+    border-radius: 8px 36px 8px 36px; }
+  .price { font-family: var(--display); font-weight: 600; font-size: clamp(40px, 8vw, 56px); line-height: 1; color: var(--gold); margin: 0; }
+  .price small { font-family: var(--body); font-size: 15px; font-weight: 500; color: var(--bone-dim); letter-spacing: 0.02em; }
+  ul.plain { list-style: none; padding: 0; margin: 0 0 1em; display: grid; gap: 9px; }
+  ul.plain li { position: relative; padding-left: 26px; color: var(--bone-dim); }
+  ul.plain li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 14px; height: 2px; background: var(--terracotta); }
+  ul.plain li strong { color: var(--bone); font-weight: 600; }
+
+  /* Form */
+  form { margin: 0; }
+  .field { margin-top: 18px; }
+  label.lbl { display: block; font-weight: 600; font-size: 15px; margin-bottom: 6px; }
+  .hint { display: block; font-weight: 400; color: var(--bone-faint); font-size: 14px; margin-top: 2px; }
+  input[type=text], input[type=email], input[type=tel], textarea {
+    width: 100%; font: inherit; font-size: 16px; color: var(--bone); background: var(--field);
+    border: 1px solid var(--stone-edge); border-radius: 8px; padding: 13px 14px; }
+  textarea { min-height: 92px; resize: vertical; }
+  input:focus, textarea:focus { border-color: var(--gold); outline: none; box-shadow: 0 0 0 3px rgba(254, 221, 0, 0.18); }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+  .choice { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; margin-top: 12px; cursor: pointer;
+    border: 1px solid var(--stone-edge); border-radius: 10px; background: var(--field); }
+  .choice:hover { border-color: var(--bone-faint); }
+  .choice input { margin-top: 4px; width: 20px; height: 20px; accent-color: var(--gold); flex: 0 0 auto; }
+  .choice .t { font-weight: 600; }
+  .choice .d { display: block; color: var(--bone-dim); font-size: 15px; margin-top: 3px; }
+  .choice.sel { border-color: var(--gold); background: rgba(254, 221, 0, 0.06); }
+  .tag { display: inline-block; margin-left: 8px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--night); background: var(--gold); border-radius: 99px; padding: 2px 9px; vertical-align: 2px; font-weight: 700; }
+  .err { color: var(--error); font-size: 14px; margin-top: 6px; }
+  .bad { border-color: var(--error) !important; }
+
+  .waiver { margin-top: 18px; padding: clamp(20px, 4vw, 32px); background: rgba(243, 238, 228, 0.045);
+    border-left: 2px solid var(--gold); font-size: 16px; line-height: 1.65; }
+  .waiver h4 { font-family: var(--body); font-size: 15px; letter-spacing: 0.06em; margin: 0 0 16px; color: var(--bone); }
+  .waiver p { color: var(--bone-dim); }
+  .waiver p:last-child { color: var(--bone); margin-bottom: 0; }
+  .sigline { display: grid; grid-template-columns: 1fr auto; gap: 0 16px; align-items: end; }
+  .sig input { font-family: var(--display); font-style: italic; font-size: 22px; padding-block: 10px; }
+  .date { color: var(--bone-dim); font-size: 15px; padding-bottom: 14px; white-space: nowrap; }
+  .sigok { color: var(--ok); font-size: 14px; margin-top: 6px; }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; padding: 14px 26px;
+    border: 0; border-radius: 99px; font: inherit; font-weight: 600; font-size: 17px; cursor: pointer; text-decoration: none;
+    background: var(--gold); color: var(--night); }
+  .btn:hover { filter: brightness(1.06); }
+  .btn[disabled] { opacity: 0.55; cursor: wait; }
+  .btn.ghost { background: transparent; color: var(--bone); border: 1px solid var(--stone-edge); }
+  .actions { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .formerr { margin-top: 16px; padding: 14px 16px; border-radius: 8px; border: 1px solid var(--error); color: var(--error); }
+
+  .sum { display: grid; gap: 8px; margin: 16px 0 0; font-size: 16px; }
+  .sum div { display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px dashed var(--stone-edge); padding-bottom: 8px; }
+  .sum div span:last-child { font-weight: 600; white-space: nowrap; }
+  .done { color: var(--ok); }
+
+  details { margin-top: 10px; }
+  summary { cursor: pointer; color: var(--gold); font-weight: 600; }
+
+  footer { border-top: 1px solid var(--stone-edge); padding-block: 26px 44px; margin-top: 30px; font-size: 14px; color: var(--bone-dim); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; }
+  footer .mail { color: var(--bone); user-select: all; }
+  footer a { color: inherit; }
+
+  @media (max-width: 640px) {
+    .two { grid-template-columns: 1fr; }
+    .steps { display: none; }
+    .sigline { grid-template-columns: 1fr; }
+    .date { padding: 8px 0 0; }
+    .btn { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="https://12stepsonthecamino.com">12 Steps <span>on the Camino</span></a>
+    <div class="steps" aria-hidden="true"><b id="st1">1 Details</b>&middot;<span id="st2">2 Release</span>&middot;<span id="st3">3 Payment</span></div>
+  </div>
+</header>
+
+<!-- Shown only when PayPal sends someone back here after paying -->
+<section class="block" id="thanks" hidden>
+  <div class="narrow">
+    <p class="place">Payment sent</p>
+    <h1>Thank you. Your place is held.</h1>
+    <p class="lede">PayPal has your payment. Dave will confirm by email, usually within a day or two.</p>
+    <p class="muted" style="margin-top:22px">If you paid the deposit, your balance is due within 30 days, and everything by Thursday, January 28, 2027. You can come back to this same link to pay it.</p>
+    <div class="actions"><a class="btn ghost" href="?">Back to the sign-up page</a></div>
+  </div>
+</section>
+
+<main id="main">
+<header class="page-head">
+  <div class="narrow">
+    <p class="place">April 16 to 24, 2027 &middot; The Wisconsin Way</p>
+    <h1>Welcome to the walk.</h1>
+    <p class="lede">You've talked with Dave, and you've both said yes. Three short steps hold your place.</p>
+
+    <div class="card" aria-labelledby="cost-h">
+      <h2 id="cost-h" style="margin-bottom:8px">What it costs</h2>
+      <p class="price">$2,495 <small>per pilgrim</small></p>
+      <h3>It covers</h3>
+      <ul class="plain">
+        <li>Eight nights of lodging across the four properties</li>
+        <li>The shuttle from Manitowoc to Champion, and the van and support for all five walking days</li>
+        <li>Dave walking alongside you and leading the Twelve Steps work every day</li>
+        <li>Story Day and Processing Day in full</li>
+        <li>Most meals, your pilgrim materials, and the completion coin at Saturday's brunch</li>
+      </ul>
+      <p class="muted small">Not included: getting yourself to Manitowoc, travel insurance, meals after the farewell brunch, and anything you buy for yourself along the way.</p>
+      <h3>How it's paid</h3>
+      <ul class="plain">
+        <li><strong>Pay in full today</strong>, if you can. One payment, nothing to carry between now and April.</li>
+        <li><strong>Or a $500 deposit today</strong> holds your place, with the balance due within 30 days.</li>
+        <li>Everything is paid by <strong>Thursday, January 28, 2027</strong>. No installments.</li>
+        <li>Your place is <strong>transferable, not refundable</strong>.</li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<form id="signup" novalidate>
+  <section class="block">
+    <div class="narrow">
+      <h2><span class="num">1</span>Your details</h2>
+      <p class="muted">So Dave can reach you, and reach someone for you if he ever needs to.</p>
+
+      <div class="field">
+        <label class="lbl" for="legal_name">Full legal name<span class="hint">As it appears on your ID. You'll type it again to sign.</span></label>
+        <input type="text" id="legal_name" name="legal_name" autocomplete="name" required maxlength="160">
+      </div>
+      <div class="two">
+        <div class="field">
+          <label class="lbl" for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" required maxlength="254">
+        </div>
+        <div class="field">
+          <label class="lbl" for="phone">Mobile phone</label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" required maxlength="40">
+        </div>
+      </div>
+      <div class="two">
+        <div class="field">
+          <label class="lbl" for="emergency_name">Emergency contact<span class="hint">Name, and how they're related to you</span></label>
+          <input type="text" id="emergency_name" name="emergency_name" required maxlength="160">
+        </div>
+        <div class="field">
+          <label class="lbl" for="emergency_phone">Their phone</label>
+          <input type="tel" id="emergency_phone" name="emergency_phone" required maxlength="40">
+        </div>
+      </div>
+      <div class="field">
+        <label class="lbl" for="dietary">Allergies or dietary needs<span class="hint">Optional. The hotel, the monks and our cooks need to know.</span></label>
+        <textarea id="dietary" name="dietary" maxlength="1500"></textarea>
+      </div>
+      <div class="field">
+        <label class="lbl" for="notes">Anything else Dave should know<span class="hint">Optional. Rooming, mobility, a question.</span></label>
+        <textarea id="notes" name="notes" maxlength="2000"></textarea>
+      </div>
+
+      <h3>The extra night</h3>
+      <label class="choice" id="extra-wrap">
+        <input type="checkbox" id="extra_night" name="extra_night">
+        <span><span class="t">Add Saturday night, April 24 (+$85)</span>
+          <span class="d">Lodging only. A quiet evening and a proper start the next morning instead of a hard landing on the highway. Meals after the farewell brunch are on you.</span></span>
+      </label>
+
+      <h3>How you'll pay</h3>
+      <div role="radiogroup" aria-label="Payment choice">
+        <label class="choice sel" data-pay="full">
+          <input type="radio" name="payment_choice" value="full" checked>
+          <span><span class="t">Pay in full today <span class="tag">Recommended</span></span>
+            <span class="d" id="full-desc"></span></span>
+        </label>
+        <label class="choice" data-pay="deposit" id="deposit-wrap">
+          <input type="radio" name="payment_choice" value="deposit">
+          <span><span class="t">$500 deposit today</span>
+            <span class="d" id="dep-desc"></span></span>
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="narrow">
+      <h2><span class="num">2</span>The release</h2>
+      <p class="muted">Please read it all the way through. This is the release every pilgrim signs before the walk. Brian Burnett, our trail guide, has a separate waiver of his own, which you'll also be asked to sign.</p>
+
+      <div class="waiver" id="waiver-text">
+        <h4>RELEASE, ACCIDENT WAIVER &amp; ASSUMPTION OF RISK</h4>
+        <p>With regard to walking 12 Steps on the Camino: The Wisconsin Way, from the Champion Shrine to Holy Hill Basilica, April 16 to 24, 2027 (the “Camino”) and all related accommodations, restaurants and other experiences (together, the “Trip”), I understand that there are many pilgrims that annually walk the Camino and take this Trip without serious injury, accident or other incident. I understand that there are significant physical challenges, hazards and possibly dangerous conditions on the Camino and this Trip.</p>
+        <p>I assume all of the risks of participating and/or volunteering in this activity, walking the Camino, the risks that may arise from the Trip, including by way of example, the physical challenges and any kind of possible injuries, illnesses, the conditions of the Camino and outdoor physical environment, negligence on the part of the persons or entities being released, the conditions from dangerous or defective equipment or property owned, maintained, or controlled by them, or incidents that may occur because of their possible liability without intentional fault (collectively, all of the foregoing referred to as the “Potential Risks”).</p>
+        <p>I certify that I am physically fit, have sufficiently prepared or trained for participation in the activity or event, and have not been advised to not participate by a qualified medical professional. I certify that there are no health-related reasons or problems which preclude my participation in this activity or event.</p>
+        <p>I acknowledge that this Release, Accident Waiver &amp; Assumption of Risk Form will be used by the event holders, sponsors, and organizers, and participants of the activity or event in which I may participate, and that it will govern my actions and responsibilities on the Trip.</p>
+        <p>In consideration of my application and permitting me to participate in this event, I hereby take the following action for myself, my executors, administrators, heirs, next of kin, successors, and assigns as follows: I WAIVE, RELEASE, AND DISCHARGE from any liability, including but not limited to the above mentioned Potential Risks, liability arising from the negligence, fault, errors, omissions or actions of the persons released, for my death, disability, personal injury, property damage, property theft, or actions of any kind which may hereafter occur to me including my traveling to and from this event, THE FOLLOWING ENTITIES OR PERSONS: Dave Hall, their successors, executors, administrators, heirs and assigns (the “Leaders”), and other specific leaders that they must necessarily delegate to undertake certain tasks that are necessary for the trip. With regard to any “other specific leaders” that may be delegated, Dave Hall must inform me of their names and duties. Dave Hall represents that he does not know of and does not anticipate any other leaders to be used.</p>
+        <p>This release does not apply to other outside persons (“Outsiders”) encountered during the Trip or on the Camino, who are not contracted by the Leaders, who commit intervening actions, and said Outsiders are not released from liability for acts of negligence or their actions that may cause injury. And further, I HOLD HARMLESS AND PROMISE NOT TO SUE the Leaders mentioned above and other specific leaders on the Trip to whom the Leaders must necessarily delegate certain responsibilities or activities, and said persons are disclosed to me by name.</p>
+        <p>Also, I have obtained travel insurance, or I had the opportunity to obtain travel insurance and declined it, and that insurance will provide adequate coverage for accdients, injuries, damages, including required heath care, consulting with medical providers and hospitals.</p>
+        <p>I CERTIFY THAT I HAVE READ THIS DOCUMENT, AND I FULLY UNDERSTAND ITS CONTENT. I AM AWARE THAT THIS IS A RELEASE OF LIABILITY AND A CONTRACT AND I SIGN IT OF MY OWN FREE WILL</p>
+      </div>
+
+      <label class="choice" style="margin-top:20px">
+        <input type="checkbox" id="waiver_agreed">
+        <span><span class="t">I have read the Release, Accident Waiver &amp; Assumption of Risk above, I understand it, and I agree to it.</span></span>
+      </label>
+      <label class="choice">
+        <input type="checkbox" id="terms_agreed">
+        <span><span class="t">I understand the payment terms.</span>
+          <span class="d">A $500 deposit holds my place, everything is paid by January 28, 2027, there are no installments, and my place is transferable, not refundable.</span></span>
+      </label>
+
+      <div class="field sig">
+        <div class="sigline">
+          <div>
+            <label class="lbl" for="signature">Sign by typing your full legal name</label>
+            <input type="text" id="signature" autocomplete="off" maxlength="160">
+          </div>
+          <div class="date" id="sigdate"></div>
+        </div>
+        <div id="sigmsg" aria-live="polite"></div>
+      </div>
+
+      <!-- Honeypot: hidden from people, irresistible to bots -->
+      <div style="position:absolute;left:-9999px" aria-hidden="true"><input type="text" id="company" tabindex="-1" autocomplete="off"></div>
+
+      <div id="formerr" class="formerr" role="alert" hidden></div>
+      <div class="actions">
+        <button class="btn" type="submit" id="submit">Sign and continue to payment</button>
+      </div>
+      <p class="muted small" style="margin-top:14px">Typing your name and pressing the button is your signature. A copy of exactly what you signed is kept with your registration.</p>
+    </div>
+  </section>
+</form>
+
+<section class="block" id="pay" hidden tabindex="-1">
+  <div class="narrow">
+    <p class="place done">Signed &middot; <span id="signed-when"></span></p>
+    <h2><span class="num">3</span>Payment</h2>
+    <p class="lede" style="margin-top:6px" id="pay-hello">Thank you. One last step.</p>
+    <div class="card">
+      <div class="sum" id="pay-sum"></div>
+      <div class="actions">
+        <a class="btn" id="pay-main" href="#" rel="noopener">Pay with PayPal</a>
+      </div>
+      <p class="muted small" style="margin-top:14px">PayPal opens in this window. You can pay from a PayPal account or, in most cases, with a debit or credit card. Your payment goes to Dave Hall.</p>
+      <details id="switch">
+        <summary id="switch-label">Pay the other way instead</summary>
+        <div class="actions"><a class="btn ghost" id="pay-alt" href="#" rel="noopener"></a></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="narrow">
+    <h2>Paying your balance</h2>
+    <p class="muted">Already signed and paid your deposit? Pay the balance here, within 30 days of your deposit and by Thursday, January 28, 2027.</p>
+    <div class="actions">
+      <a class="btn ghost" id="bal-plain" href="#" rel="noopener"></a>
+      <a class="btn ghost" id="bal-extra" href="#" rel="noopener"></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>12 Steps on the Camino &middot; The Wisconsin Way &middot; April 16 to 24, 2027</span>
+    <span>Questions? Write to Dave: <span class="mail">dave@caminolife.app</span></span>
+    <span><a href="/privacy">Privacy</a></span>
+  </div>
+</footer>
+
+<script>
+(() => {
+  // ---- Settings (change here, nowhere else) ----
+  const PRICE = 2495;          // per pilgrim, Dave Oct 14 2026
+  const DEPOSIT = 500;
+  const EXTRA = 85;          // optional Saturday night, lodging only
+  const FINAL_DUE = new Date(2027, 0, 28);   // Thursday, January 28, 2027
+  const PAYPAL_TO = "musicianary@mac.com";
+  const ENDPOINT = "https://rjovgilbrgacmynnpgsh.supabase.co/functions/v1/twelve-steps-register";
+  const WAIVER_VERSION = "2026-10-14";
+  const WAIVER_SHA256 = "a0dc0dd87a641bbbbc4e9c871b6f16754477f07e9e19e58faf487635c2169c22";
+  const STORE = "twelveStepsSignup";
+
+  const $ = (id) => document.getElementById(id);
+  const money = (n) => "$" + n.toLocaleString("en-US", { minimumFractionDigits: n % 1 ? 2 : 0 });
+  const fmtDate = (d) => d.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+  // Compare letters and digits only: "Mary-Jo O'Neil" signs fine as "Mary Jo ONeil".
+  const norm = (s) => s.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "");
+  const digits = (s) => s.replace(/\D/g, "").length;
+
+  const here = location.origin + location.pathname;
+  function paypal(amount, label, name, id) {
+    const p = new URLSearchParams({
+      cmd: "_xclick", business: PAYPAL_TO, currency_code: "USD", charset: "utf-8", no_shipping: "1",
+      item_name: "12 Steps on the Camino 2027: " + label + (name ? " (" + name + ")" : ""),
+      amount: amount.toFixed(2),
+      return: here + "?paid=1", cancel_return: here,
+    });
+    if (id) p.set("custom", id);
+    return "https://www.paypal.com/cgi-bin/webscr?" + p.toString();
+  }
+
+  const store = {
+    get() { try { return JSON.parse(localStorage.getItem(STORE) || "null"); } catch { return null; } },
+    set(v) { try { localStorage.setItem(STORE, JSON.stringify(v)); } catch {} },
+  };
+
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const plus30 = new Date(today); plus30.setDate(plus30.getDate() + 30);
+  const balanceDue = plus30 < FINAL_DUE ? plus30 : FINAL_DUE;
+  const depositAllowed = today < FINAL_DUE;
+
+  // Balance buttons (for people who already paid a deposit)
+  $("bal-plain").textContent = "Pay balance " + money(PRICE - DEPOSIT);
+  $("bal-plain").href = paypal(PRICE - DEPOSIT, "Balance");
+  $("bal-extra").textContent = "Pay balance " + money(PRICE + EXTRA - DEPOSIT) + " (with extra night)";
+  $("bal-extra").href = paypal(PRICE + EXTRA - DEPOSIT, "Balance incl. Saturday night");
+
+  // Returning from PayPal
+  const qs = new URLSearchParams(location.search);
+  if (qs.get("paid") === "1") { $("thanks").hidden = false; $("main").hidden = true; return; }
+
+  const form = $("signup");
+  const choiceInputs = [...form.querySelectorAll("input[name=payment_choice]")];
+  if (!depositAllowed) { $("deposit-wrap").hidden = true; }
+
+  function totals() {
+    const extra = $("extra_night").checked;
+    const full = PRICE + (extra ? EXTRA : 0);
+    return { extra, full, balance: full - DEPOSIT };
+  }
+  function refreshChoices() {
+    const t = totals();
+    $("full-desc").textContent = money(t.full) + " today" + (t.extra ? ", including the Saturday night" : "") + ".";
+    $("dep-desc").textContent = "Then " + money(t.balance) + " by " + fmtDate(balanceDue) + ".";
+    form.querySelectorAll(".choice[data-pay]").forEach((el) => el.classList.toggle("sel", el.querySelector("input").checked));
+    $("extra-wrap").classList.toggle("sel", t.extra);
+  }
+  form.addEventListener("change", refreshChoices);
+  refreshChoices();
+
+  $("sigdate").textContent = "Date: " + today.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+
+  function sigCheck() {
+    const s = $("signature").value, n = $("legal_name").value;
+    const box = $("sigmsg");
+    if (!s.trim()) { box.innerHTML = ""; return; }
+    if (n.trim() && norm(s) === norm(n)) box.innerHTML = '<div class="sigok">Signature matches your legal name.</div>';
+    else box.innerHTML = '<div class="err">Type your name exactly as you entered it above: ' + (n.trim() ? n.trim().replace(/[<>&]/g, "") : "(fill in your legal name first)") + "</div>";
+  }
+  $("signature").addEventListener("input", sigCheck);
+  $("legal_name").addEventListener("input", sigCheck);
+
+  function fieldError(el, msg) {
+    el.classList.add("bad");
+    let e = el.parentElement.querySelector(".err.f");
+    if (!e) { e = document.createElement("div"); e.className = "err f"; el.after(e); }
+    e.textContent = msg;
+  }
+  function clearErrors() {
+    form.querySelectorAll(".bad").forEach((el) => el.classList.remove("bad"));
+    form.querySelectorAll(".err.f").forEach((el) => el.remove());
+    $("formerr").hidden = true;
+  }
+
+  const SERVER_MSG = {
+    missing_name: ["legal_name", "Please enter your full legal name."],
+    invalid_email: ["email", "That email address doesn't look complete."],
+    missing_phone: ["phone", "Please enter a full phone number, including area code."],
+    missing_emergency_name: ["emergency_name", "Please name an emergency contact."],
+    missing_emergency_phone: ["emergency_phone", "Please enter your emergency contact's full phone number."],
+    signature_mismatch: ["signature", "Your signature has to match your legal name exactly."],
+    waiver_not_agreed: [null, "Please tick the box to agree to the release."],
+    terms_not_agreed: [null, "Please tick the box to agree to the payment terms."],
+    waiver_out_of_date: [null, "The release on this page is out of date. Please reload the page and sign again."],
+  };
+
+  function showPayment(rec) {
+    form.hidden = true;
+    document.querySelector(".page-head").hidden = true;
+    $("pay").hidden = false;
+    $("st1").outerHTML = '<span id="st1">1 Details</span>';
+    $("st3").outerHTML = '<b id="st3">3 Payment</b>';
+    const first = (rec.legal_name || "").split(" ")[0];
+    $("pay-hello").textContent = "Thank you" + (first ? ", " + first : "") + ". One last step.";
+    $("signed-when").textContent = new Date(rec.signed_at || Date.now()).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+    const full = PRICE + (rec.extra_night ? EXTRA : 0);
+    const bal = full - DEPOSIT;
+    const extraLbl = rec.extra_night ? " incl. Saturday night" : "";
+    const rows = [["12 Steps on the Camino, April 16 to 24, 2027", money(PRICE)]];
+    if (rec.extra_night) rows.push(["Saturday night, April 24 (lodging only)", money(EXTRA)]);
+    rows.push(["Total", money(full)]);
+    const fullUrl = paypal(full, "Paid in full" + extraLbl, rec.legal_name, rec.id);
+    const depUrl = paypal(DEPOSIT, "Deposit", rec.legal_name, rec.id);
+    if (rec.payment_choice === "deposit" && depositAllowed) {
+      rows.push(["Pay today (deposit)", money(DEPOSIT)]);
+      rows.push(["Balance due by " + fmtDate(balanceDue), money(bal)]);
+      $("pay-main").textContent = "Pay " + money(DEPOSIT) + " deposit with PayPal";
+      $("pay-main").href = depUrl;
+      $("switch-label").textContent = "Rather pay in full today?";
+      $("pay-alt").textContent = "Pay " + money(full) + " in full instead";
+      $("pay-alt").href = fullUrl;
+    } else {
+      rows.push(["Pay today", money(full)]);
+      $("pay-main").textContent = "Pay " + money(full) + " with PayPal";
+      $("pay-main").href = fullUrl;
+      if (depositAllowed) {
+        $("switch-label").textContent = "Need to pay the deposit instead?";
+        $("pay-alt").textContent = "Pay " + money(DEPOSIT) + " deposit now, " + money(bal) + " later";
+        $("pay-alt").href = depUrl;
+      } else { $("switch").hidden = true; }
+    }
+    $("pay-sum").innerHTML = rows.map(([a, b]) => "<div><span>" + a + "</span><span>" + b + "</span></div>").join("");
+    $("pay").scrollIntoView({ behavior: "smooth", block: "start" });
+    $("pay").focus({ preventScroll: true });
+  }
+
+  // Signed earlier on this device but did not pay yet: go straight to payment.
+  const saved = store.get();
+  if (saved && saved.id && saved.waiver_version === WAIVER_VERSION) showPayment(saved);
+
+  form.addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    clearErrors();
+    const v = (id) => $(id).value.trim();
+    const errs = [];
+    if (!v("legal_name")) errs.push(["legal_name", "Please enter your full legal name."]);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v("email"))) errs.push(["email", "Please enter a valid email address."]);
+    if (digits(v("phone")) < 7) errs.push(["phone", "Please enter a full phone number, including area code."]);
+    if (!v("emergency_name")) errs.push(["emergency_name", "Please name an emergency contact."]);
+    if (digits(v("emergency_phone")) < 7) errs.push(["emergency_phone", "Please enter their full phone number."]);
+    if (!v("signature")) errs.push(["signature", "Type your full legal name to sign."]);
+    else if (norm(v("signature")) !== norm(v("legal_name"))) errs.push(["signature", "Your signature has to match your legal name exactly."]);
+    const boxErrs = [];
+    if (!$("waiver_agreed").checked) boxErrs.push("Please tick the box to agree to the release.");
+    if (!$("terms_agreed").checked) boxErrs.push("Please tick the box to agree to the payment terms.");
+    errs.forEach(([id, m]) => fieldError($(id), m));
+    if (errs.length || boxErrs.length) {
+      if (boxErrs.length) { $("formerr").textContent = boxErrs.join(" "); $("formerr").hidden = false; }
+      const first = errs.length ? $(errs[0][0]) : $("formerr");
+      first.scrollIntoView({ behavior: "smooth", block: "center" });
+      if (errs.length) first.focus({ preventScroll: true });
+      return;
+    }
+
+    const payload = {
+      legal_name: v("legal_name"), email: v("email"), phone: v("phone"),
+      emergency_name: v("emergency_name"), emergency_phone: v("emergency_phone"),
+      dietary: $("dietary").value, notes: $("notes").value,
+      extra_night: $("extra_night").checked,
+      payment_choice: (choiceInputs.find((i) => i.checked) || {}).value,
+      waiver_agreed: true, terms_agreed: true,
+      signature: v("signature"),
+      waiver_version: WAIVER_VERSION, waiver_sha256: WAIVER_SHA256,
+      company: $("company").value,
+    };
+    const btn = $("submit");
+    btn.disabled = true; btn.textContent = "Signing...";
+    try {
+      const res = await fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) {
+        const m = SERVER_MSG[data.error];
+        if (m && m[0]) { fieldError($(m[0]), m[1]); $(m[0]).scrollIntoView({ behavior: "smooth", block: "center" }); }
+        else { $("formerr").textContent = (m && m[1]) || "Something went wrong and your signature was not saved. Please try again, or write to Dave at dave@caminolife.app."; $("formerr").hidden = false; }
+        return;
+      }
+      const rec = { id: data.id, signed_at: data.signed_at, legal_name: payload.legal_name, extra_night: payload.extra_night,
+        payment_choice: payload.payment_choice, waiver_version: WAIVER_VERSION };
+      store.set(rec);
+      showPayment(rec);
+    } catch (e) {
+      $("formerr").textContent = "We couldn't reach the server, so nothing was saved. Check your connection and try again.";
+      $("formerr").hidden = false;
+    } finally {
+      btn.disabled = false; btn.textContent = "Sign and continue to payment";
+    }
+  });
+})();
+</script>
+</body>
+</html>
