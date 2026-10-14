@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy Notice</title>
+<meta name="description" content="What Camino Coach Dave collects, why, how long it is kept, and your rights over it. Short version: the website collects nothing.">
+<link rel="canonical" href="https://caminocoachdave.com/privacy">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  /* Privacy notice. Same family as index.html and homecoming.html, but calmer:
+     no scroll story, no sticky sky, one readable column. A legal page should be easy to read. */
+  :root {
+    --night: #0B0645;
+    --navy: #10069F;
+    --dusk: #3A2470;
+    --terracotta: #C26B4A;
+    --dawn: #F2A65A;
+    --gold: #FEDD00;
+    --bone: #F3EEE4;
+    --bone-dim: rgba(243, 238, 228, 0.72);
+    --bone-faint: rgba(243, 238, 228, 0.38);
+    --stone: rgba(243, 238, 228, 0.07);
+    --stone-edge: rgba(243, 238, 228, 0.16);
+    --display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    --body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; color: var(--bone); font-family: var(--body); font-size: 17px; line-height: 1.65;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+    background: var(--night);
+    background-image: linear-gradient(180deg, var(--night) 0%, var(--navy) 55%, var(--dusk) 100%);
+    background-attachment: fixed; }
+  img { max-width: 100%; display: block; }
+  a { color: var(--gold); }
+  :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+  .wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+  .narrow { width: min(720px, 100% - 32px); margin-inline: auto; }
+
+  .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+    background: rgba(11, 6, 69, 0.82); backdrop-filter: blur(10px); border-bottom: 1px solid var(--stone-edge); }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 10px; }
+  .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--bone); font-weight: 600; letter-spacing: 0.02em; font-size: 15px; }
+  .brand img { width: 34px; height: auto; }
+  .top .back { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: var(--bone-dim); text-decoration: none; }
+  .top .back:hover { color: var(--gold); }
+
+  header.page-head { padding-block: clamp(56px, 10vh, 110px) 0; }
+  .place { font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin: 0 0 18px; }
+  h1 { font-family: var(--display); font-weight: 600; line-height: 1.05; margin: 0; letter-spacing: -0.014em;
+    font-size: clamp(38px, 6vw, 62px); font-variation-settings: "opsz" 144; }
+  h2 { font-family: var(--display); font-weight: 600; line-height: 1.12; margin: 0 0 14px; letter-spacing: -0.01em;
+    font-size: clamp(24px, 3vw, 31px); font-variation-settings: "opsz" 96; }
+  h3 { font-family: var(--body); font-weight: 600; font-size: 17px; margin: 24px 0 8px; color: var(--dawn); letter-spacing: 0.01em; }
+  .lede { font-family: var(--display); font-style: italic; font-weight: 300; font-size: clamp(20px, 2.4vw, 26px);
+    line-height: 1.4; color: var(--bone-dim); margin: 22px 0 0; max-width: 34ch; }
+  .updated { margin-top: 26px; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bone-faint); }
+  p { margin: 0 0 1.05em; }
+  section.block { padding-block: clamp(36px, 5vh, 54px); }
+  section.block + section.block { border-top: 1px solid var(--stone-edge); }
+
+  /* The short version, up top, because most people read only this */
+  .tldr { margin-top: clamp(40px, 6vh, 64px); padding: clamp(26px, 4vw, 40px);
+    background: var(--stone); border: 1px solid var(--stone-edge); border-radius: 8px 42px 8px 42px; }
+  .tldr h2 { color: var(--gold); }
+  /* Dash marker is absolutely positioned, NOT a grid column. With grid, an inline <strong>
+     plus following text became two separate grid items and the text collapsed into the 14px column. */
+  .tldr ul { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 13px; }
+  .tldr li { position: relative; padding-left: 27px; color: var(--bone-dim); }
+  .tldr li::before { content: ""; position: absolute; left: 0; top: 0.68em; width: 14px; height: 2px; background: var(--terracotta); }
+  .tldr li strong { color: var(--bone); font-weight: 600; }
+
+  ul.plain { list-style: none; padding: 0; margin: 0 0 1.05em; display: grid; gap: 11px; }
+  ul.plain li { position: relative; padding-left: 27px; color: var(--bone-dim); }
+  ul.plain li::before { content: ""; position: absolute; left: 0; top: 0.68em; width: 14px; height: 2px; background: var(--terracotta); }
+  .muted { color: var(--bone-dim); }
+  .callout { margin: 22px 0 0; padding: 20px 24px; border-left: 2px solid var(--gold); background: rgba(243,238,228,0.04); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  footer { border-top: 1px solid var(--stone-edge); padding-block: 28px 44px; margin-top: 40px; font-size: 14px; color: var(--bone-dim); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; }
+  footer .mail { color: var(--bone); user-select: all; }
+  footer a { color: inherit; }
+
+  @media (max-width: 760px) {
+    header.page-head { padding-top: 40px; }
+    section.block { padding-block: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="assets/logo.webp" alt="CaminoLife" width="34" height="40"> Camino Coach Dave</a>
+    <a class="back" href="/">All five paths</a>
+  </div>
+</header>
+
+<header class="page-head">
+  <div class="narrow">
+    <p class="place">Privacy</p>
+    <h1>What I know about you, and what I do with it.</h1>
+    <p class="lede">Short answer: almost nothing, unless you become a coaching client. Then quite a lot, and I take it seriously.</p>
+    <p class="updated">Last updated 14 October 2026</p>
+
+    <div class="tldr">
+      <h2>The short version</h2>
+      <ul>
+        <li><strong>This website sets no cookies.</strong> No analytics, no advertising pixels, no tracking of any kind. I do not know who visits this site.</li>
+        <li><strong>There are no forms here.</strong> Nothing to fill in, nothing collected. If you want to reach me, you email me, and then I have your email because you sent it.</li>
+        <li><strong>If you become a coaching client,</strong> I collect what the work needs: your contact details, your assessment, your weekly worksheets, and my notes from our calls.</li>
+        <li><strong>I do not sell anything to anyone, ever,</strong> and I do not share your material without your written permission.</li>
+        <li><strong>You can ask me for a copy of everything I hold on you, or ask me to delete it,</strong> and I will do it.</li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<section class="block">
+  <div class="narrow">
+    <h2>Who I am</h2>
+    <p>This site and the coaching described on it are run by CaminoLife Coaching, LLC, a Wisconsin limited liability company, and by me personally, Dave Hall. I am the person who decides what happens to your information, and I am the person who answers when you ask about it.</p>
+    <p>You can reach me at <span class="muted">dave@caminolife.app</span>.</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="narrow">
+    <h2>The website</h2>
+    <p>This is a plain website. It does not try to learn anything about you.</p>
+    <ul class="plain">
+      <li>No cookies are set.</li>
+      <li>No analytics software runs. I genuinely do not know how many people read this page.</li>
+      <li>No advertising or social media tracking pixels.</li>
+      <li>No contact forms, no newsletter box, nothing to submit.</li>
+    </ul>
+    <p>Two honest footnotes. First, the typefaces on this site are loaded from Google Fonts, which means your browser asks Google's servers for them, and that request carries your IP address, as every web request does. I get nothing from it and I see nothing from it. Second, the site is hosted on Vercel, and like every web host they keep brief server logs that include IP addresses, for security and to keep the site running.</p>
+    <p>If you follow a link from here to Substack, Facebook, Instagram, TikTok, X, LinkedIn, or anywhere else, you are on their website under their rules, not mine.</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="narrow">
+    <h2>If you email me</h2>
+    <p>The buttons on this site open your own email program. If you write to me, I have your email address and whatever you chose to put in the message, which is how email has always worked.</p>
+    <p>I keep enquiries that do not turn into coaching for up to two years, in case you come back, and then I delete them. Ask me to delete yours sooner and I will.</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="narrow">
+    <h2>If you become a coaching client</h2>
+    <p>This is where there is real information, and where it matters.</p>
+
+    <h3>What I collect</h3>
+    <ul class="plain">
+      <li>Your name, email, phone number, mailing address and time zone.</li>
+      <li>The emergency contact you give me, and whether you have allowed me to use it.</li>
+      <li>Your Homecoming Assessment, at the start and at the end.</li>
+      <li>Your weekly worksheets.</li>
+      <li>My own brief notes from our calls.</li>
+      <li>A record that you paid, and when. I do not see or hold your card details. The payment company does that.</li>
+    </ul>
+
+    <h3>Why</h3>
+    <p>To do the work you are paying me for. The assessment and the worksheets are the material we coach on. The notes are how I can tell you in week six where you were in week one, which is most of the value of the last call. The contact details are how we arrange calls. The payment record is how I keep honest books.</p>
+
+    <h3>Sensitive material</h3>
+    <p>This program is for people carrying grief, and in the Twelve Step version, for people in recovery. What you tell me is some of the most personal information there is. I treat it that way. I collect it because you have chosen to do this work with me and we have agreed it in writing, and for no other reason.</p>
+
+    <h3>Who else sees it</h3>
+    <p>Nobody, in the ordinary course. I do not share your material, I do not use your name or your story in my writing, teaching, speaking or marketing without asking you separately and in writing, and I never sell anything to anyone.</p>
+    <p>A small number of ordinary business services necessarily handle some of it on my behalf: an email provider, a video calling provider, cloud storage for documents, and a payment processor. They are bound to keep it confidential and to use it only to provide their service to me.</p>
+    <p>The narrow exceptions where I may have to disclose something are set out in your coaching agreement: where I reasonably believe it is necessary to prevent serious harm to you or someone else, where there is a reasonable suspicion of abuse or neglect of a child, an elderly person or a vulnerable adult, or where the law requires it.</p>
+
+    <div class="callout">
+      <p><strong>One thing you should know plainly.</strong> Coaching is not a legally privileged relationship. Unlike a conversation with a licensed therapist, an attorney or a member of the clergy, what you tell a coach is generally not protected by law and could in principle be compelled in legal proceedings. That is true of all coaching, not just mine, and you deserve to know it before you start.</p>
+    </div>
+
+    <h3>How long I keep it</h3>
+    <p>Session notes and assessments are kept for seven years and then deleted. Payment records are kept as long as tax and accounting rules require. If you ask me to delete your material sooner, I will, unless I am legally required to keep a particular record.</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="narrow">
+    <h2>Where your information lives</h2>
+    <p>I work from Wisconsin, in the United States, and the services I use store information there. If you are writing to me from Europe, the United Kingdom, or anywhere else outside the US, your information will be handled in the United States, which may not give it the same legal protections your own country does. By working with me you are agreeing to that.</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="narrow">
+    <h2>Your rights</h2>
+    <p>Wherever you live, you can ask me to:</p>
+    <ul class="plain">
+      <li>Tell you what I hold about you.</li>
+      <li>Send you a copy of it.</li>
+      <li>Correct anything that is wrong.</li>
+      <li>Delete it.</li>
+      <li>Stop using it for something you are no longer comfortable with.</li>
+    </ul>
+    <p>Email me and I will do it, normally within 30 days. I will not charge you and I will not make it difficult.</p>
+    <p>If you are in the European Union or the United Kingdom, you also have the right to object to certain processing, to ask for your information in a portable format, and to complain to your national data protection authority if you think I have handled your information badly. I would much rather you told me first and gave me the chance to put it right.</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="narrow">
+    <h2>Children</h2>
+    <p>This coaching is for adults. I do not knowingly collect information about anyone under 18. If you believe I have, tell me and I will delete it.</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="narrow">
+    <h2>If this notice changes</h2>
+    <p>I will change the date at the top. If a change actually matters to you as a current client, I will email you about it rather than quietly editing the page and hoping you notice.</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="narrow">
+    <h2>Questions</h2>
+    <p>Write to me at <span class="muted">dave@caminolife.app</span>. A real person reads it, and the real person is me.</p>
+    <p class="muted">Buen Camino.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Dave Hall, Camino Life Coach &middot; <a href="/">caminocoachdave.com</a></span>
+    <span>Write to Dave: <span class="mail">dave@caminolife.app</span></span>
+    <span>&copy; 2026 CaminoLife Coaching, LLC</span>
+  </div>
+</footer>
+
+</body>
+</html>
