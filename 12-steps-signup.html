@@ -152,12 +152,12 @@
   </div>
 </header>
 
-<!-- Shown only when PayPal sends someone back here after paying -->
+<!-- Shown only when Stripe sends someone back here after paying -->
 <section class="block" id="thanks" hidden>
   <div class="narrow">
     <p class="place">Payment sent</p>
     <h1>Thank you. Your place is held.</h1>
-    <p class="lede">PayPal has your payment. Dave will confirm by email, usually within a day or two.</p>
+    <p class="lede">Your payment went through. Dave will confirm by email, usually within a day or two.</p>
     <p class="muted" style="margin-top:22px">If you paid the deposit, your balance is due within 30 days, and everything by Thursday, January 28, 2027. You can come back to this same link to pay it.</p>
     <div class="actions"><a class="btn ghost" href="?">Back to the sign-up page</a></div>
   </div>
@@ -187,7 +187,7 @@
         <li><strong>Pay in full today</strong>, if you can. One payment, nothing to carry between now and April.</li>
         <li><strong>Or a $500 deposit today</strong> holds your place, with the balance due within 30 days.</li>
         <li>Everything is paid by <strong>Thursday, January 28, 2027</strong>. No installments.</li>
-        <li>Cancel by email by <strong>Thursday, January 28, 2027</strong> for a refund. If you&rsquo;ve paid only the $500 deposit, it comes back in full. If you&rsquo;ve paid more, everything you&rsquo;ve paid comes back minus payment processing fees.</li>
+        <li>Cancel by email by <strong>Thursday, January 28, 2027</strong> for a refund. If you&rsquo;ve paid only the $500 deposit, it comes back in full. If you&rsquo;ve paid the deposit plus the balance or paid in full, everything you&rsquo;ve paid comes back minus payment processing fees.</li>
         <li>After January 28, 2027, your place is <strong>transferable, not refundable</strong>.</li>
       </ul>
     </div>
@@ -198,7 +198,7 @@
   <section class="block">
     <div class="narrow">
       <h2><span class="num">1</span>Your details</h2>
-      <p class="muted">So Dave can reach you, and reach someone for you if he ever needs to.</p>
+      <p class="muted">So Dave can reach you, and reach someone for you in case of emergency.</p>
 
       <div class="field">
         <label class="lbl" for="legal_name">Full legal name<span class="hint">As it appears on your ID. You'll type it again to sign.</span></label>
@@ -280,7 +280,7 @@
       <label class="choice">
         <input type="checkbox" id="terms_agreed">
         <span><span class="t">I understand the payment terms.</span>
-          <span class="d">A $500 deposit holds my place, everything is paid by January 28, 2027, and there are no installments. If I cancel by email by January 28, 2027 and have paid only the deposit, my $500 is refunded in full; if I have paid more, everything I paid is refunded minus payment processing fees. After January 28, 2027, my place is transferable, not refundable.</span></span>
+          <span class="d">A $500 deposit holds my place, everything is paid by January 28, 2027, and there are no installments. If I cancel by email by January 28, 2027 and have paid only the deposit, my $500 is refunded in full; if I have paid the deposit plus the balance or paid in full, everything I paid is refunded minus payment processing fees. After January 28, 2027, my place is transferable, not refundable.</span></span>
       </label>
 
       <div class="field sig">
@@ -314,9 +314,9 @@
     <div class="card">
       <div class="sum" id="pay-sum"></div>
       <div class="actions">
-        <a class="btn" id="pay-main" href="#" rel="noopener">Pay with PayPal</a>
+        <a class="btn" id="pay-main" href="#" rel="noopener">Pay by card</a>
       </div>
-      <p class="muted small" style="margin-top:14px">PayPal opens in this window. You can pay from a PayPal account or, in most cases, with a debit or credit card. Your payment goes to Dave Hall.</p>
+      <p class="muted small" style="margin-top:14px">Stripe&rsquo;s secure checkout opens in this window. You can pay with a debit or credit card. Your payment goes to Dave Hall and shows on your statement as CAMINOCOACHDAVE.COM.</p>
       <details id="switch">
         <summary id="switch-label">Pay the other way instead</summary>
         <div class="actions"><a class="btn ghost" id="pay-alt" href="#" rel="noopener"></a></div>
@@ -352,7 +352,15 @@
   const DEPOSIT = 500;
   const EXTRA = 85;          // optional Saturday night, lodging only
   const FINAL_DUE = new Date(2027, 0, 28);   // Thursday, January 28, 2027
-  const PAYPAL_TO = "musicianary@mac.com";
+  // Stripe Payment Links (account caminocoachdave.substack). Amounts are fixed in Stripe:
+  // if PRICE, DEPOSIT or EXTRA change, make new links in Stripe and paste them here.
+  const STRIPE = {
+    deposit: "https://buy.stripe.com/14A00k9e46LR5yNdzQ3sI01",        // $500
+    full: "https://buy.stripe.com/3cI6oIbmcfin4uJ53k3sI02",           // $2,495
+    full_extra: "https://buy.stripe.com/00weVeeyogmrbXbeDU3sI03",     // $2,495 + $85
+    balance: "https://buy.stripe.com/fZu4gAgGwb27gdr3Zg3sI04",        // $1,995
+    balance_extra: "https://buy.stripe.com/bJecN6eyo1rxf9n8fw3sI05",  // $1,995 + $85
+  };
   const ENDPOINT = "https://rjovgilbrgacmynnpgsh.supabase.co/functions/v1/twelve-steps-register";
   const WAIVER_VERSION = "2026-10-14";
   const WAIVER_SHA256 = "a0dc0dd87a641bbbbc4e9c871b6f16754477f07e9e19e58faf487635c2169c22";
@@ -365,16 +373,10 @@
   const norm = (s) => s.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "");
   const digits = (s) => s.replace(/\D/g, "").length;
 
-  const here = location.origin + location.pathname;
-  function paypal(amount, label, name, id) {
-    const p = new URLSearchParams({
-      cmd: "_xclick", business: PAYPAL_TO, currency_code: "USD", charset: "utf-8", no_shipping: "1",
-      item_name: "12 Steps on the Camino 2027: " + label + (name ? " (" + name + ")" : ""),
-      amount: amount.toFixed(2),
-      return: here + "?paid=1", cancel_return: here,
-    });
-    if (id) p.set("custom", id);
-    return "https://www.paypal.com/cgi-bin/webscr?" + p.toString();
+  // The registration id rides along as client_reference_id, so each Stripe payment
+  // matches its signed row in twelve_steps_registrations.
+  function pay(kind, id) {
+    return STRIPE[kind] + (id ? "?client_reference_id=" + encodeURIComponent(String(id).replace(/[^A-Za-z0-9_-]/g, "")) : "");
   }
 
   const store = {
@@ -389,11 +391,11 @@
 
   // Balance buttons (for people who already paid a deposit)
   $("bal-plain").textContent = "Pay balance " + money(PRICE - DEPOSIT);
-  $("bal-plain").href = paypal(PRICE - DEPOSIT, "Balance");
+  $("bal-plain").href = pay("balance");
   $("bal-extra").textContent = "Pay balance " + money(PRICE + EXTRA - DEPOSIT) + " (with extra night)";
-  $("bal-extra").href = paypal(PRICE + EXTRA - DEPOSIT, "Balance incl. Saturday night");
+  $("bal-extra").href = pay("balance_extra");
 
-  // Returning from PayPal
+  // Returning from Stripe
   const qs = new URLSearchParams(location.search);
   if (qs.get("paid") === "1") { $("thanks").hidden = false; $("main").hidden = true; return; }
 
@@ -463,23 +465,22 @@
     $("signed-when").textContent = new Date(rec.signed_at || Date.now()).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
     const full = PRICE + (rec.extra_night ? EXTRA : 0);
     const bal = full - DEPOSIT;
-    const extraLbl = rec.extra_night ? " incl. Saturday night" : "";
     const rows = [["12 Steps on the Camino, April 16 to 24, 2027", money(PRICE)]];
     if (rec.extra_night) rows.push(["Saturday night, April 24 (lodging only)", money(EXTRA)]);
     rows.push(["Total", money(full)]);
-    const fullUrl = paypal(full, "Paid in full" + extraLbl, rec.legal_name, rec.id);
-    const depUrl = paypal(DEPOSIT, "Deposit", rec.legal_name, rec.id);
+    const fullUrl = pay(rec.extra_night ? "full_extra" : "full", rec.id);
+    const depUrl = pay("deposit", rec.id);
     if (rec.payment_choice === "deposit" && depositAllowed) {
       rows.push(["Pay today (deposit)", money(DEPOSIT)]);
       rows.push(["Balance due by " + fmtDate(balanceDue), money(bal)]);
-      $("pay-main").textContent = "Pay " + money(DEPOSIT) + " deposit with PayPal";
+      $("pay-main").textContent = "Pay " + money(DEPOSIT) + " deposit";
       $("pay-main").href = depUrl;
       $("switch-label").textContent = "Rather pay in full today?";
       $("pay-alt").textContent = "Pay " + money(full) + " in full instead";
       $("pay-alt").href = fullUrl;
     } else {
       rows.push(["Pay today", money(full)]);
-      $("pay-main").textContent = "Pay " + money(full) + " with PayPal";
+      $("pay-main").textContent = "Pay " + money(full);
       $("pay-main").href = fullUrl;
       if (depositAllowed) {
         $("switch-label").textContent = "Need to pay the deposit instead?";
