@@ -192,9 +192,10 @@
   .version p { font-size: 15.5px; color: var(--bone-dim); line-height: 1.5; }
 
   /* Guide strip */
-  .guide .wrap { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+  .guide .wrap { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 48px; align-items: center; }
   .portrait { position: relative; max-width: 340px; margin-inline: auto; width: 100%; }
   .portrait img { border-radius: 6px 40px 6px 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.55); }
+  .portrait.landscape { max-width: 560px; }
   .portrait figcaption { margin-top: 12px; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bone-faint); }
 
   .interlude { position: relative; z-index: 3; height: 56vh; min-height: 340px; overflow: hidden; margin-block: 4vh; }
@@ -245,6 +246,7 @@
     section { padding-block: 8vh; }
     .guide .wrap { grid-template-columns: 1fr; }
     .portrait { max-width: 280px; }
+    .portrait.landscape { max-width: 100%; }
     .interlude { height: 44vh; }
     .interlude .cap { white-space: normal; width: calc(100% - 32px); text-align: center; }
   }
@@ -436,8 +438,8 @@
           <a class="cta quiet" href="https://walkingtowardfire.com" target="_blank" rel="noopener">Read the prologue <svg><use href="#arrow"/></svg></a>
         </div>
       </div>
-      <figure class="portrait rv">
-        <img src="assets/dave-dan-casa-susi.jpg" alt="Dave Hall and Dan Mullins smiling together, Dan holding a handwritten setlist" width="900" height="1200">
+      <figure class="portrait landscape rv">
+        <img src="assets/dave-dan-singing.jpg" alt="Dave Hall and Dan Mullins singing together into one microphone, both playing travel guitars, with poppies and greenery behind them" width="1431" height="994">
         <figcaption>With Dan Mullins at Casa Susi on the Magical Musical Camino, May 12, 2024</figcaption>
       </figure>
     </div>
