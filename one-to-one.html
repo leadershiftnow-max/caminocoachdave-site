@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Six Weeks to Homecoming</title>
-<meta name="description" content="Six Weeks to Homecoming: six weekly one-to-one coaching calls with Dave Hall for pilgrims back from the Camino de Santiago. Start with a free 15-minute call.">
-<link rel="canonical" href="https://caminocoachdave.com/homecoming">
-<meta property="og:title" content="Six Weeks to Homecoming">
-<meta property="og:description" content="Six weekly one-to-one calls for pilgrims back from the Way. The Camino surfaces things. It does not finish them.">
-<meta property="og:url" content="https://caminocoachdave.com/homecoming">
+<title>One to One Coaching</title>
+<meta name="description" content="Four weeks of one to one coaching with Dave Hall, before or after the Camino de Santiago: Wilgrim Ready: Your 4-Week Camino Prep, and Four Weeks to Homecoming. Start with a free 15-minute call.">
+<link rel="canonical" href="https://caminocoachdave.com/one-to-one">
+<meta property="og:title" content="Before the walk. After the walk.">
+<meta property="og:description" content="Four weeks of one to one coaching with Dave Hall, for the Camino you are about to walk or the one you just came home from.">
+<meta property="og:url" content="https://caminocoachdave.com/one-to-one">
 <meta property="og:image" content="https://caminocoachdave.com/assets/meseta.jpg">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -16,8 +16,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,300;1,9..144,600&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-  /* Six Weeks to Homecoming. Same night-sky family as index.html, caminolife.app/wilgrims
-     and 12stepsonthecamino.com. One page, one offer, one way out: the free 15-minute call. */
+  /* One to one coaching: Wilgrim Ready (before) and Four Weeks to Homecoming (after).
+     Same night-sky family as index.html, caminolife.app/wilgrims and 12stepsonthecamino.com.
+     One page, two options, one way in: the free 15-minute call. Replaces /homecoming (redirects here). */
   :root {
     --night: #0B0645;
     --navy: #10069F;
@@ -112,11 +113,31 @@
   .facts li::before { content: ""; width: 14px; height: 2px; background: var(--terracotta); transform: translateY(-4px); }
 
   /* The six weeks */
-  .weeks { list-style: none; padding: 0; margin: 44px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 14px; }
+  .weeks { list-style: none; padding: 0; margin: 44px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
   .week { display: grid; gap: 10px; align-content: start; padding: 26px 24px 24px;
     background: var(--stone); border: 1px solid var(--stone-edge); border-radius: 6px 28px 6px 28px; }
   .week .n { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; color: var(--gold); }
   .week p { font-size: 15.5px; color: var(--bone-dim); line-height: 1.5; }
+
+
+  /* Two options */
+  .options { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 40px; }
+  .options .offer { display: grid; align-content: start; gap: 0; }
+  .options .offer h3 { font-size: clamp(24px, 2.6vw, 30px); line-height: 1.1; max-width: 18ch; }
+  .options .for { margin-top: 14px; color: var(--bone-dim); font-size: 16px; max-width: 36ch; }
+  .options .price { margin-top: 22px; }
+  .more { display: inline-flex; align-items: center; gap: 12px; margin-top: 22px; font-weight: 600; font-size: 15px; color: var(--gold); text-decoration: none; }
+  .more:hover { gap: 18px; }
+  .more svg { width: 26px; height: 12px; }
+  .facts.both { margin-top: 28px; max-width: 760px; }
+  .chooser { display: flex; flex-wrap: wrap; gap: 10px 20px; }
+  .chooser a { font-size: 15px; color: var(--bone-dim); text-decoration: underline; text-decoration-color: var(--stone-edge); text-underline-offset: 5px; }
+  .chooser a:hover { color: var(--gold); text-decoration-color: var(--gold); }
+  .narrow-left { max-width: 760px; }
+  #wilgrim-ready .weeks, #homecoming .weeks { margin-top: 40px; }
+  #homecoming .facts { max-width: 760px; margin-top: 28px; }
+  #wilgrim-ready .actions { margin-top: 32px; }
+  section[id] { scroll-margin-top: 64px; }
 
   /* Frameworks */
   .frames { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 44px; }
@@ -204,62 +225,93 @@
 
   <section class="hero" id="top">
     <div class="hero-copy">
-      <p class="place">One to one coaching</p>
-      <h1>Six Weeks to Homecoming</h1>
-      <p class="lede">You made it to Santiago. Then you came home, and nobody told you that was the hard part.</p>
+      <p class="place">One to one coaching with Dave Hall</p>
+      <h1>Before the walk. After the walk.</h1>
+      <p class="lede">Four weeks of one to one coaching, for the Camino you are about to walk or the one you just came home from.</p>
       <div class="actions">
-        <!-- BOOKING LINK. Single source of truth for the whole page: this href and the three
-             others marked BOOKING LINK below. Swap all four for a scheduler URL when one exists. -->
-        <a class="cta" href="mailto:dave@caminolife.app?subject=Free%2015-minute%20call%3A%20Six%20Weeks%20to%20Homecoming&amp;body=Hi%20Dave%2C%0A%0AI'd%20like%20to%20book%20the%20free%2015-minute%20call.%0A%0AWhen%20I%20walked%3A%20%0AWhich%20route%3A%20%0ABest%20times%20to%20reach%20me%3A%20%0A%0AThanks%2C%0A">Book a free 15-minute call <svg><use href="#arrow"/></svg></a>
+        <!-- BOOKING LINK. Single source of truth for the whole page: this href and the two
+             others marked BOOKING LINK below. Swap all three for the Calendly URL when it exists. -->
+        <a class="cta" href="mailto:dave@caminolife.app?subject=Free%2015-minute%20call%3A%20one%20to%20one%20coaching&amp;body=Hi%20Dave%2C%0A%0AI'd%20like%20to%20book%20the%20free%2015-minute%20call.%0A%0ABefore%20or%20after%20my%20Camino%3A%20%0AWhich%20route%2C%20and%20when%3A%20%0ABest%20times%20to%20reach%20me%3A%20%0A%0AThanks%2C%0A">Book a free 15-minute call <svg><use href="#arrow"/></svg></a>
       </div>
-      <span class="note">No charge, no pitch. Fifteen minutes to find out whether this is for you.</span>
+      <div class="chooser">
+        <a href="#wilgrim-ready">I am getting ready to walk</a>
+        <a href="#homecoming">I am back from the Camino</a>
+      </div>
+      <span class="note">No charge, no pitch. Fifteen minutes to find out which one fits, or whether neither does.</span>
     </div>
     <div class="hero-photo"><img src="assets/meseta.jpg" alt="The open road of the Camino stretching toward the horizon" width="1600" height="900" fetchpriority="high"></div>
   </section>
 
-  <section class="problem">
-    <div class="narrow prose rv">
-      <p class="place">The part nobody prepares you for</p>
-      <h2>The Camino surfaces things. It does not finish them.</h2>
-      <p class="callback">You are back, but you are not home yet.</p>
-      <p>For weeks you had one job. Walk. Eat. Sleep. Walk again. Something came loose out there, and you felt it. Maybe it was grief you had been carrying for years. Maybe it was a decision you had been avoiding. Maybe it was just the quiet, and what the quiet said to you.</p>
-      <p>Then you flew home. The laundry, the inbox, the same kitchen. Within a month the Camino starts to feel like a holiday you once took, and the thing that came loose quietly settles back into place.</p>
-      <p>That is not a failure of will. It is what happens to every pilgrim who walks back into an unchanged life with no plan for the thing they are carrying. The walk opens it. The homecoming is where it either takes root or closes over.</p>
+  <section id="options">
+    <div class="wrap rv">
+      <p class="place">Two options</p>
+      <h2>Pick the side of the walk you are on.</h2>
+      <div class="options">
+        <div class="offer">
+          <p class="place">Before you walk</p>
+          <h3>Wilgrim Ready: Your 4-Week Camino Prep</h3>
+          <p class="for">For anyone dreaming of the Camino, planning it, or already booked.</p>
+          <p class="price">$297<small>Four weekly calls, paid up front.</small></p>
+          <a class="more" href="#wilgrim-ready">See the four weeks <svg><use href="#arrow"/></svg></a>
+        </div>
+        <div class="offer">
+          <p class="place">After you walk</p>
+          <h3>Four Weeks to Homecoming</h3>
+          <p class="for">For pilgrims back from the Way, whether that was last month or three years ago.</p>
+          <p class="price">$297<small>Four weekly calls, paid up front.</small></p>
+          <a class="more" href="#homecoming">See the four weeks <svg><use href="#arrow"/></svg></a>
+        </div>
+      </div>
+      <ul class="facts both">
+        <li>Four one to one calls, one a week. The first and last are 75 minutes, the two in between are 45.</li>
+        <li>Booked around your schedule, wherever you are in the world.</li>
+        <li>An intake form before week one, so the first call starts in the right place.</li>
+        <li>If it is not useful by the end of week two, you stop and I refund the rest. No argument, no awkwardness.</li>
+        <li>Start with a free 15-minute call if you want to talk before you commit.</li>
+      </ul>
     </div>
   </section>
 
-  <section>
-    <div class="narrow rv">
-      <div class="offer">
-        <p class="place">The offer</p>
-        <h2>Six weeks. Six calls. One honest look at what you brought home.</h2>
-        <p class="price">$475<small>Six weekly one-to-one calls, paid up front. The first and last are a full hour, the four in between are 45 minutes.</small></p>
-        <ul class="facts">
-          <li>One call a week, booked around your schedule, wherever you are in the world.</li>
-          <li>An intake form before week one, so the first call starts in the right place.</li>
-          <li>A free copy of Walking Toward Fire, my own book about walking the Camino and coming home badly, in week six.</li>
-          <li>If it is not useful by the end of week two, you stop and I refund the rest. No argument, no awkwardness.</li>
-          <li>Start with a free 15-minute call if you want to talk before you commit.</li>
-        </ul>
-        <div class="actions">
-          <!-- BOOKING LINK -->
-          <a class="cta" href="mailto:dave@caminolife.app?subject=Free%2015-minute%20call%3A%20Six%20Weeks%20to%20Homecoming&amp;body=Hi%20Dave%2C%0A%0AI'd%20like%20to%20book%20the%20free%2015-minute%20call.%0A%0AWhen%20I%20walked%3A%20%0AWhich%20route%3A%20%0ABest%20times%20to%20reach%20me%3A%20%0A%0AThanks%2C%0A">Book a free 15-minute call <svg><use href="#arrow"/></svg></a>
-        </div>
+  <section id="wilgrim-ready">
+    <div class="wrap">
+      <div class="narrow-left prose rv">
+        <p class="place">Before you walk &middot; Wilgrim Ready: Your 4-Week Camino Prep</p>
+        <h2>Most pilgrims prepare their body. Few prepare their soul.</h2>
+        <p class="callback">The Camino is an encounter with yourself. Packing lists will not prepare you for that.</p>
+        <p>Wilgrim Ready takes you through the four movements of MAPS, one a week, so that when you step onto the path you are not walking blind. Just you and me, on your schedule.</p>
+      </div>
+      <ul class="weeks rv">
+        <li class="week"><span class="n">Week one &middot; 75 minutes</span><h3>M &middot; Mental</h3><p>Route, logistics, and practical readiness. Clarity instead of rumination. Why you are going, held with a clear head.</p></li>
+        <li class="week"><span class="n">Week two &middot; 45 minutes</span><h3>A &middot; Awareness</h3><p>Naming what you feel before the road names it for you. Shame and guilt, and the difference. What you are carrying that is not in the pack.</p></li>
+        <li class="week"><span class="n">Week three &middot; 45 minutes</span><h3>P &middot; Physical</h3><p>Training, boots, health, and packing light. Learning to treat your body as a teacher, not an obstacle.</p></li>
+        <li class="week"><span class="n">Week four &middot; 75 minutes</span><h3>S &middot; Spiritual</h3><p>Spiritual IQ and Spiritual EQ. Where your deepest wound might be your deepest gift. The questions you will carry onto the road.</p></li>
+      </ul>
+      <div class="actions rv">
+        <!-- BOOKING LINK -->
+        <a class="cta" href="mailto:dave@caminolife.app?subject=Free%2015-minute%20call%3A%20one%20to%20one%20coaching&amp;body=Hi%20Dave%2C%0A%0AI'd%20like%20to%20book%20the%20free%2015-minute%20call.%0A%0ABefore%20or%20after%20my%20Camino%3A%20%0AWhich%20route%2C%20and%20when%3A%20%0ABest%20times%20to%20reach%20me%3A%20%0A%0AThanks%2C%0A">Book a free 15-minute call <svg><use href="#arrow"/></svg></a>
       </div>
     </div>
   </section>
 
-  <section>
-    <div class="wrap rv">
-      <p class="place">The six weeks</p>
-      <h2>What we actually do.</h2>
-      <ul class="weeks">
-        <li class="week"><span class="n">Week one</span><h3>Arrival</h3><p>We start with what you wrote on your intake form, then walk through both frameworks: MAPS, the movements of the journey, and WALK, the daily practice that holds it together between calls.</p></li>
-        <li class="week"><span class="n">Week two</span><h3>The Weight</h3><p>What is still sitting on you from before the walk. The Camino surfaced it. This is where we find out exactly what it is, and stop trying to fix it long enough to name it.</p></li>
-        <li class="week"><span class="n">Week three</span><h3>The Practice</h3><p>You leave with one daily rhythm you will actually keep. The footsteps mantra: a word paired with every step. Inhale here, exhale now, inhale step, exhale step.</p></li>
-        <li class="week"><span class="n">Week four</span><h3>Relationships</h3><p>Who in your life needs to hear what changed, and how to say it. We script that conversation before you have it, so it goes the way you mean it to.</p></li>
-        <li class="week"><span class="n">Week five</span><h3>The Next Mountain</h3><p>Not another pilgrimage. The ordinary one: work, family, the thing you have been avoiding. We map it the way you would map a stage. Stages, rest stops, what to carry.</p></li>
-        <li class="week"><span class="n">Week six</span><h3>Integration</h3><p>You write your own one-sentence answer to what the Camino did to you. That is your homecoming, and you keep it. Then you lay the stone down.</p></li>
+  <section id="homecoming">
+    <div class="wrap">
+      <div class="narrow-left prose rv">
+        <p class="place">After you walk &middot; Four Weeks to Homecoming</p>
+        <h2>The Camino surfaces things. It does not finish them.</h2>
+        <p class="callback">You are back, but you are not home yet.</p>
+        <p>For weeks you had one job. Walk. Eat. Sleep. Walk again. Something came loose out there, and you felt it. Maybe it was grief you had been carrying for years. Maybe it was a decision you had been avoiding. Maybe it was just the quiet, and what the quiet said to you.</p>
+        <p>Then you flew home. The laundry, the inbox, the same kitchen. Within a month the Camino starts to feel like a holiday you once took, and the thing that came loose quietly settles back into place.</p>
+        <p>That is not a failure of will. It is what happens to every pilgrim who walks back into an unchanged life with no plan for the thing they are carrying. The walk opens it. The homecoming is where it either takes root or closes over.</p>
+      </div>
+      <ul class="weeks rv">
+        <li class="week"><span class="n">Week one &middot; 75 minutes</span><h3>Arrival and The Practice</h3><p>We start with what you wrote on your intake form and walk through both frameworks, MAPS and WALK. You leave with one daily rhythm you will actually keep: the footsteps mantra, a word paired with every step.</p></li>
+        <li class="week"><span class="n">Week two &middot; 45 minutes</span><h3>The Weight</h3><p>What is still sitting on you from before the walk. The Camino surfaced it. This is where we find out exactly what it is, and stop trying to fix it long enough to name it.</p></li>
+        <li class="week"><span class="n">Week three &middot; 45 minutes</span><h3>Relationships</h3><p>Who in your life needs to hear what changed, and how to say it. We script that conversation before you have it, so it goes the way you mean it to.</p></li>
+        <li class="week"><span class="n">Week four &middot; 75 minutes</span><h3>The Next Mountain and Integration</h3><p>Not another pilgrimage. The ordinary one: work, family, the thing you have been avoiding. We map it the way you would map a stage. Then you write your own one-sentence answer to what the Camino did to you, and you lay the stone down.</p></li>
+      </ul>
+      <ul class="facts rv">
+        <li>A free copy of Walking Toward Fire, my own book about walking the Camino and coming home badly, in week four.</li>
+        <li>Also comes in a 12-step version, with Steps Six, Seven and Eight folded into weeks two, three and four, and the Walking With guidebook as your companion text. For pilgrims already in recovery. We work out which fits on the free call.</li>
       </ul>
     </div>
   </section>
@@ -269,12 +321,12 @@
   <section>
     <div class="wrap rv">
       <p class="place">How it works</p>
-      <h2>Two frameworks, used every week.</h2>
+      <h2>Two frameworks, used every week, either side of the walk.</h2>
       <div class="frames">
         <div class="frame">
           <h3>MAPS, the movements of the journey</h3>
           <dl class="defs">
-            <div><dt>Mental</dt><dd>Clarify what you are carrying home, and what you are choosing to let go of.</dd></div>
+            <div><dt>Mental</dt><dd>Clarify what you are carrying, and what you are choosing to let go of.</dd></div>
             <div><dt>Awareness</dt><dd>Name the grief, the fear, the unfinished thing, without rushing to fix it.</dd></div>
             <div><dt>Physical</dt><dd>One daily rhythm that keeps the road under your feet.</dd></div>
             <div><dt>Spiritual IQ</dt><dd>How God might be speaking through this season.</dd></div>
@@ -294,32 +346,14 @@
     </div>
   </section>
 
-  <section>
-    <div class="wrap rv">
-      <p class="place">Two versions</p>
-      <h2>Pick the one that fits.</h2>
-      <div class="versions">
-        <div class="version">
-          <h3>The general version</h3>
-          <p>The six weeks above, no 12-step language anywhere in it. For any pilgrim who came home carrying something and wants to do the work properly.</p>
-        </div>
-        <div class="version">
-          <h3>The 12-step version</h3>
-          <p>The same six weeks, with Steps Six, Seven and Eight folded into weeks two, four and five, and the Walking With guidebook as your companion text. For pilgrims already in recovery.</p>
-        </div>
-      </div>
-      <span class="note">You do not have to decide now. We work it out on the free call.</span>
-    </div>
-  </section>
-
   <section class="guide">
     <div class="wrap">
       <div class="prose rv">
         <p class="place">Your coach</p>
-        <h2>I have walked this one myself.</h2>
+        <h2>I have walked this road four times.</h2>
         <p>I am Dave Hall. Four Caminos: the Norte in 2019, the Portuguese Coastal in 2023, Leon to Santiago in May 2024 as traveling hospitalero on Dan Mullins' Magical Musical Camino, and the Litoral and Spiritual Variant with Dan in 2025.</p>
         <p>I did not come home from the first one well. I know exactly how it goes when you walk 500 miles, feel something crack open, and then let an ordinary November close it back up. My book, Walking Toward Fire, is the honest version of that story.</p>
-        <p>This is the coaching I wish someone had offered me in the weeks after I got off the plane.</p>
+        <p>This is the coaching I wish someone had offered me, before I flew out and in the weeks after I got off the plane.</p>
         <div class="actions">
           <a class="cta quiet" href="https://walkingtowardfire.com" target="_blank" rel="noopener">Read the prologue <svg><use href="#arrow"/></svg></a>
         </div>
@@ -337,12 +371,20 @@
       <h2>The questions people actually ask.</h2>
       <div class="faq">
         <details>
-          <summary>How long ago do I have to have walked?</summary>
-          <p>There is no window. Fresh off the plane is good, because it is all still loud. Three years out is also good, because by then you know which parts stayed. If you are still thinking about it, it is not too late.</p>
+          <summary>Which option is for me?</summary>
+          <p>If you have not walked yet, or you are walking soon, Wilgrim Ready. If you are back, Four Weeks to Homecoming. If you are not sure, that is what the free call is for.</p>
         </details>
         <details>
-          <summary>I have not walked a Camino yet. Is this for me?</summary>
-          <p>Not this one. This is for pilgrims coming home. If you are preparing to walk, the Wilgrim cohorts are built for that, and I would rather put you in the right room. Write to me and I will point you there.</p>
+          <summary>Can I do both?</summary>
+          <p>Yes. Before you go and after you get back is the whole arc, and some pilgrims want someone with them on both sides of it. Ask about it on the free call.</p>
+        </details>
+        <details>
+          <summary>Is Wilgrim Ready the same as the Wilgrims cohort?</summary>
+          <p>No. The cohort is a small group that meets together on Zoom. Wilgrim Ready is one to one: just you and me, on your schedule.</p>
+        </details>
+        <details>
+          <summary>How long ago do I have to have walked?</summary>
+          <p>There is no window. Fresh off the plane is good, because it is all still loud. Three years out is also good, because by then you know which parts stayed. If you are still thinking about it, it is not too late.</p>
         </details>
         <details>
           <summary>Do I have to be religious?</summary>
@@ -350,7 +392,7 @@
         </details>
         <details>
           <summary>What if it is not working?</summary>
-          <p>Then you stop at the end of week two and I refund the rest. You do not have to justify it. I would rather give the money back than keep someone in six weeks that are not helping.</p>
+          <p>Then you stop at the end of week two and I refund the rest. You do not have to justify it. I would rather give the money back than keep someone in four weeks that are not helping.</p>
         </details>
         <details>
           <summary>Is this therapy?</summary>
@@ -358,7 +400,7 @@
         </details>
         <details>
           <summary>What happens on the free 15-minute call?</summary>
-          <p>You tell me where you walked and what you came home with. I tell you honestly whether I think six weeks with me would help. If the answer is no, I will say that too.</p>
+          <p>You tell me where you are walking, or where you walked, and what you are carrying. I tell you honestly whether four weeks with me would help. If the answer is no, I will say that too.</p>
         </details>
       </div>
     </div>
@@ -368,12 +410,12 @@
     <div class="wrap">
       <p class="place rv">Ultreia</p>
       <h2 class="rv">Some griefs can't be talked through. They have to be walked through.</h2>
-      <p class="lede rv">You already did the walking. Let's finish it properly.</p>
+      <p class="lede rv">Whether you are about to go or just got back, start with fifteen minutes.</p>
       <div class="actions rv">
         <!-- BOOKING LINK -->
-        <a class="cta" href="mailto:dave@caminolife.app?subject=Free%2015-minute%20call%3A%20Six%20Weeks%20to%20Homecoming&amp;body=Hi%20Dave%2C%0A%0AI'd%20like%20to%20book%20the%20free%2015-minute%20call.%0A%0AWhen%20I%20walked%3A%20%0AWhich%20route%3A%20%0ABest%20times%20to%20reach%20me%3A%20%0A%0AThanks%2C%0A">Book a free 15-minute call <svg><use href="#arrow"/></svg></a>
+        <a class="cta" href="mailto:dave@caminolife.app?subject=Free%2015-minute%20call%3A%20one%20to%20one%20coaching&amp;body=Hi%20Dave%2C%0A%0AI'd%20like%20to%20book%20the%20free%2015-minute%20call.%0A%0ABefore%20or%20after%20my%20Camino%3A%20%0AWhich%20route%2C%20and%20when%3A%20%0ABest%20times%20to%20reach%20me%3A%20%0A%0AThanks%2C%0A">Book a free 15-minute call <svg><use href="#arrow"/></svg></a>
       </div>
-      <span class="note" style="margin-inline:auto;text-align:center">Six weeks, $475. Stop at week two and I refund the rest.</span>
+      <span class="note" style="margin-inline:auto;text-align:center">Four weeks, $297, either side of the walk. Stop at week two and I refund the rest.</span>
     </div>
   </section>
 
