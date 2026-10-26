@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wilgrim or Pilgrim?</title>
+<meta name="description" content="Four weeks of one to one coaching with Dave Hall, before or after the Camino de Santiago. For Wilgrims: Wilgrim Ready: Your 4-Week Camino Prep. For Pilgrims: Four Weeks to Homecoming. Start with a free 15-minute call.">
+<link rel="canonical" href="https://caminocoachdave.com/one-to-one">
+<meta property="og:title" content="Wilgrim or Pilgrim?">
+<meta property="og:description" content="Four weeks of one to one coaching with Dave Hall, on whichever side of the Camino you are standing.">
+<meta property="og:url" content="https://caminocoachdave.com/one-to-one">
+<meta property="og:image" content="https://caminocoachdave.com/assets/finisterre.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,300;1,9..144,600&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  /* Wilgrim or Pilgrim? One to one coaching on either side of the Camino:
+     Wilgrim Ready (before) and Four Weeks to Homecoming (after). Same night-sky family as
+     index.html, caminolife.app/wilgrims and 12stepsonthecamino.com. One page, two doors,
+     one way in: the free 15-minute call. Replaces /homecoming (redirects here). */
+  :root {
+    --night: #0B0645;
+    --navy: #10069F;
+    --dusk: #3A2470;
+    --ember: #B8431C;
+    --terracotta: #C26B4A;
+    --dawn: #F2A65A;
+    --gold: #FEDD00;
+    --bone: #F3EEE4;
+    --bone-dim: rgba(243, 238, 228, 0.70);
+    --bone-faint: rgba(243, 238, 228, 0.34);
+    --stone: rgba(243, 238, 228, 0.07);
+    --stone-edge: rgba(243, 238, 228, 0.16);
+    --p: 0;
+    --display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    --body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--night); color: var(--bone); font-family: var(--body); font-size: 17px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+  .sky { position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background: linear-gradient(180deg, var(--night) 0%, var(--navy) 60%, var(--dusk) 100%); }
+  .sky-ember { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: var(--p);
+    background: linear-gradient(180deg, #14082e 0%, #4a1a2e 45%, var(--ember) 80%, var(--dawn) 100%); }
+  .sky-sun { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: calc(var(--p) * var(--p));
+    background: radial-gradient(70% 55% at 50% 108%, rgba(254,221,0,0.70) 0%, rgba(242,166,90,0.5) 35%, transparent 70%); }
+  .page { position: relative; z-index: 1; }
+  .wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+  .narrow { width: min(760px, 100% - 32px); margin-inline: auto; }
+
+  .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+    background: rgba(11, 6, 69, 0.72); backdrop-filter: blur(10px); border-bottom: 1px solid var(--stone-edge); }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 10px; }
+  .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 600; letter-spacing: 0.02em; font-size: 15px; }
+  .brand img { width: 44px; height: auto; }
+  .top .back { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: var(--bone-dim); text-decoration: none; }
+  .top .back:hover { color: var(--gold); }
+
+  .place { font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin: 0 0 18px; line-height: 1.5; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.04; text-wrap: balance; margin: 0; letter-spacing: -0.014em; }
+  h1 { font-size: clamp(36px, 5.2vw, 66px); font-variation-settings: "opsz" 144; max-width: 15ch; }
+  h2 { font-size: clamp(30px, 4.4vw, 50px); font-variation-settings: "opsz" 120; max-width: 20ch; }
+  h3 { font-size: 21px; }
+  .lede { font-family: var(--display); font-style: italic; font-weight: 300; font-size: clamp(20px, 2.4vw, 27px); line-height: 1.35; color: var(--bone-dim); margin: 0; max-width: 34ch; }
+  p { margin: 0; }
+  .prose p { max-width: 58ch; }
+  .prose p + p { margin-top: 1.1em; }
+  .callback { font-family: var(--display); font-style: italic; font-weight: 300; font-size: clamp(19px, 2.2vw, 25px); color: var(--dawn); margin: 14px 0 26px; max-width: 32ch; line-height: 1.35; }
+
+  .cta { display: inline-flex; align-items: center; gap: 14px; background: var(--gold); color: var(--night); text-decoration: none;
+    font-weight: 600; font-size: 16px; padding: 16px 24px; border-radius: 999px; box-shadow: 0 10px 44px rgba(254,221,0,0.22);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, gap 0.2s ease; }
+  .cta:hover, .cta:focus-visible { transform: translateY(-2px); box-shadow: 0 16px 54px rgba(254,221,0,0.34); gap: 20px; }
+  .cta svg { width: 26px; height: 12px; flex: none; }
+  .cta.quiet { background: transparent; color: var(--bone); box-shadow: none; border: 1px solid var(--stone-edge); }
+  .cta.quiet:hover { border-color: var(--gold); color: var(--gold); box-shadow: none; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center; margin-top: 30px; }
+  .note { display: block; margin-top: 16px; font-size: 15px; color: var(--bone-dim); max-width: 46ch; }
+
+  /* Hero */
+  /* padding-block:0 overrides the generic `section` padding so the photo bleeds the full height of the hero. */
+  .hero { position: relative; min-height: 78vh; padding-block: 0; display: grid; grid-template-columns: minmax(0, 56fr) minmax(0, 44fr); overflow: hidden; align-items: stretch; }
+  .hero-copy { position: relative; z-index: 2; align-self: center; display: grid; gap: 22px;
+    padding: clamp(48px, 9vh, 110px) clamp(24px, 4vw, 56px) clamp(40px, 7vh, 90px) max(16px, calc((100vw - 1120px) / 2)); }
+  .hero-copy h1 { max-width: 11ch; font-size: clamp(40px, 5.4vw, 72px); }
+  .hero-copy .lede { color: var(--bone); max-width: 32ch; }
+  .hero-photo { position: relative; min-height: 78vh; height: 100%; margin: 0; }
+  .hero-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 32%; }
+  .hero-photo::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(90deg, var(--night) 0%, rgba(11,6,69,0.55) 5%, rgba(11,6,69,0) 14%); }
+  .hero-photo::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(180deg, rgba(11,6,69,0.18) 0%, rgba(11,6,69,0) 14%, rgba(11,6,69,0) 78%, var(--night) 100%); }
+
+  section { padding-block: 11vh; }
+
+  /* The problem */
+  .problem .wrap { display: grid; gap: 10px; }
+
+  /* The offer card */
+  .offer { background: var(--stone); border: 1px solid var(--stone-edge); border-radius: 8px 42px 8px 42px; padding: clamp(28px, 4vw, 48px); }
+  .offer h2 { max-width: 22ch; }
+  .price { font-family: var(--display); font-weight: 600; font-size: clamp(34px, 5vw, 56px); color: var(--gold); line-height: 1; margin: 26px 0 6px; }
+  .price small { display: block; font-family: var(--body); font-weight: 400; font-size: 16px; color: var(--bone-dim); letter-spacing: 0; margin-top: 12px; }
+  .facts { list-style: none; padding: 0; margin: 26px 0 0; display: grid; gap: 10px; font-size: 16px; color: var(--bone-dim); }
+  .facts li { display: grid; grid-template-columns: 14px 1fr; gap: 12px; align-items: baseline; }
+  .facts li::before { content: ""; width: 14px; height: 2px; background: var(--terracotta); transform: translateY(-4px); }
+
+  /* The six weeks */
+  .weeks { list-style: none; padding: 0; margin: 44px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .week { display: grid; gap: 10px; align-content: start; padding: 26px 24px 24px;
+    background: var(--stone); border: 1px solid var(--stone-edge); border-radius: 6px 28px 6px 28px; }
+  .week .n { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; color: var(--gold); }
+  .week p { font-size: 15.5px; color: var(--bone-dim); line-height: 1.5; }
+
+
+  /* Hero caption and the two doors */
+  .hero-photo figcaption { position: absolute; z-index: 2; left: 28px; bottom: 22px; font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase; font-weight: 600; color: var(--bone); text-shadow: 0 1px 12px rgba(0,0,0,0.8); }
+  .doors { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 6px; }
+  .door { display: grid; gap: 8px; align-content: start; padding: 20px 20px 18px; text-decoration: none;
+    background: var(--stone); border: 1px solid var(--stone-edge); border-radius: 6px 26px 6px 26px;
+    transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease; }
+  .door:hover, .door:focus-visible { border-color: var(--gold); transform: translateY(-2px); background: rgba(243,238,228,0.1); }
+  .door .word { font-family: var(--display); font-weight: 600; font-size: 30px; line-height: 1; }
+  .door.before .word { color: var(--dawn); }
+  .door.after .word { color: var(--gold); }
+  .door .def { font-size: 15px; color: var(--bone-dim); line-height: 1.45; }
+  .door .go { display: inline-flex; align-items: center; gap: 10px; margin-top: 4px; font-size: 14px; font-weight: 600; color: var(--bone); }
+  .door .go svg { width: 22px; height: 10px; flex: none; color: var(--gold); }
+
+  /* The whole road: before, during, after */
+  .stages { list-style: none; padding: 0; margin: 44px 0 0; display: grid; grid-template-columns: 1fr 0.8fr 1fr; gap: 14px; position: relative; }
+  .stage { position: relative; display: grid; gap: 10px; align-content: start; padding: 26px 24px 24px;
+    background: var(--stone); border: 1px solid var(--stone-edge); border-radius: 6px 28px 6px 28px; }
+  .stage.during { background: transparent; border-style: dashed; }
+  .stage .when { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; }
+  .stage.before .when { color: var(--dawn); }
+  .stage.during .when { color: var(--bone-faint); }
+  .stage.after .when { color: var(--gold); }
+  .stage p { font-size: 15.5px; color: var(--bone-dim); line-height: 1.5; }
+  .stage p strong { color: var(--bone); font-weight: 600; }
+  .stage.during h3 { color: var(--bone-dim); }
+  .price-sm { font-family: var(--display); font-weight: 600; font-size: 28px; color: var(--gold); line-height: 1; margin-right: 8px; vertical-align: -3px; }
+  .price-line { margin-top: 6px; }
+  .more { display: inline-flex; align-items: center; gap: 12px; margin-top: 6px; font-weight: 600; font-size: 15px; color: var(--gold); text-decoration: none; }
+  .more:hover { gap: 18px; }
+  .more svg { width: 26px; height: 12px; }
+  .facts.both { margin-top: 28px; max-width: 760px; }
+
+  /* Each side of the walk */
+  .side .weeks { margin-top: 40px; }
+  .split { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+  .photo { margin: 0; }
+  .photo img { width: 100%; height: auto; border-radius: 6px 36px 6px 36px; box-shadow: 0 26px 60px rgba(0,0,0,0.5); }
+  .guide .portrait img { width: 100%; height: auto; }
+  .photo figcaption, .guide .portrait figcaption { margin-top: 12px; font-size: 14px; color: var(--bone-dim); line-height: 1.5; max-width: 52ch; letter-spacing: 0; text-transform: none; }
+  .narrow-left { max-width: 760px; }
+  .photo.wide { margin-top: 40px; }
+  .photo.wide img { aspect-ratio: 2 / 1; object-fit: cover; border-radius: 6px 40px 6px 40px; }
+  #homecoming .facts { max-width: 760px; margin-top: 28px; }
+  .buy { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; margin-top: 34px; }
+  .buy p { color: var(--bone-dim); font-size: 16px; }
+  section[id] { scroll-margin-top: 64px; }
+
+  /* Finisterre, shown whole */
+  .finisterre { margin: 6vh 0 0; position: relative; z-index: 2; }
+  .finisterre img { display: block; width: min(1120px, 100% - 32px); margin-inline: auto; height: auto; aspect-ratio: 1080 / 660; object-fit: cover; border-radius: 6px 40px 6px 40px; }
+  .finisterre figcaption { display: grid; gap: 8px; padding-block: 18px 0; }
+  .cap-place { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; color: var(--gold); }
+  .cap-text { font-size: 16px; color: var(--bone-dim); max-width: 62ch; }
+  .cap-line { font-family: var(--display); font-style: italic; font-weight: 300; font-size: clamp(22px, 2.8vw, 32px); color: var(--bone); margin-top: 6px; }
+
+  /* Frameworks */
+  .frames { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 44px; }
+  .frame h3 { color: var(--bone); margin-bottom: 18px; }
+  .defs { margin: 0; display: grid; gap: 14px; }
+  .defs dt { font-weight: 600; font-size: 15px; letter-spacing: 0.04em; color: var(--dawn); }
+  .defs dd { margin: 4px 0 0; font-size: 15.5px; color: var(--bone-dim); line-height: 1.5; }
+
+  /* Two versions */
+  .versions { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-top: 40px; }
+  .version { padding: 26px 24px; background: var(--stone); border: 1px solid var(--stone-edge); border-radius: 6px 28px 6px 28px; }
+  .version h3 { margin-bottom: 10px; }
+  .version p { font-size: 15.5px; color: var(--bone-dim); line-height: 1.5; }
+
+  /* Guide strip */
+  .guide .wrap { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+  .portrait { position: relative; max-width: 340px; margin-inline: auto; width: 100%; }
+  .portrait img { border-radius: 6px 40px 6px 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.55); }
+  .portrait.landscape { max-width: 560px; }
+  .portrait figcaption { margin-top: 12px; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bone-faint); }
+
+  .interlude { position: relative; z-index: 3; height: 56vh; min-height: 340px; overflow: hidden; margin-block: 4vh; }
+  .interlude img { width: 100%; height: 100%; object-fit: cover; object-position: center 45%; transform: scale(1.1); }
+  .interlude::before { content: ""; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(180deg, var(--night) 0%, rgba(11,6,69,0.25) 30%, rgba(11,6,69,0.25) 70%, var(--night) 100%); mix-blend-mode: multiply; }
+  .interlude::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, var(--night), transparent 22%, transparent 78%, var(--night)); }
+  .interlude .cap { position: absolute; left: 50%; bottom: 14%; transform: translateX(-50%); z-index: 2; font-family: var(--display); font-style: italic; font-weight: 300;
+    font-size: clamp(20px, 2.6vw, 30px); color: var(--bone); text-shadow: 0 2px 20px rgba(0,0,0,0.8); white-space: nowrap; }
+
+  /* FAQ */
+  .faq { margin-top: 40px; display: grid; gap: 12px; }
+  .faq details { background: var(--stone); border: 1px solid var(--stone-edge); border-radius: 6px 24px 6px 24px; padding: 18px 24px; }
+  .faq summary { cursor: pointer; font-weight: 600; font-size: 17px; list-style: none; display: flex; justify-content: space-between; gap: 16px; align-items: center; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; color: var(--gold); font-size: 22px; line-height: 1; flex: none; }
+  .faq details[open] summary::after { content: "\2013"; }
+  .faq p { margin-top: 12px; color: var(--bone-dim); font-size: 16px; max-width: 62ch; }
+
+  .close { text-align: center; padding-block: 13vh 7vh; }
+  .close h2 { margin-inline: auto; max-width: 20ch; }
+  .close .lede { margin: 20px auto 0; }
+  .close .actions { justify-content: center; }
+  footer { border-top: 1px solid var(--stone-edge); padding-block: 28px 40px; font-size: 14px; color: var(--bone-dim); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; }
+  footer .mail { color: var(--bone); user-select: all; }
+
+  .js .rv.pre { opacity: 0.001; transform: translateY(22px); }
+  .js .rv { transition: opacity 1.2s cubic-bezier(.2,.7,.2,1), transform 1.2s cubic-bezier(.2,.7,.2,1); }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .js .rv, .js .rv.pre { opacity: 1; transform: none; transition: none; }
+    .cta { transition: none; }
+  }
+
+  @media (max-width: 760px) {
+    .hero { min-height: 0; grid-template-columns: 1fr; }
+    .hero-photo { order: -1; min-height: 0; aspect-ratio: 4 / 5; }
+    .stages { grid-template-columns: 1fr; }
+    .split { grid-template-columns: 1fr; gap: 28px; }
+    .hero-photo { aspect-ratio: 4 / 5; }
+    .hero-photo img { object-position: 50% 30%; }
+    .hero-photo figcaption { left: 16px; bottom: 14px; }
+
+    .hero-photo::before { background: none; }
+    .hero-photo::after { background: linear-gradient(180deg, rgba(11,6,69,0) 70%, var(--night) 100%); }
+    .hero-copy { padding: 8px 16px 48px; }
+    section { padding-block: 8vh; }
+    .guide .wrap { grid-template-columns: 1fr; }
+    .portrait { max-width: 280px; }
+    .portrait.landscape { max-width: 100%; }
+    .interlude { height: 44vh; }
+    .interlude .cap { white-space: normal; width: calc(100% - 32px); text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true"></div>
+<div class="sky-ember" aria-hidden="true"></div>
+<div class="sky-sun" aria-hidden="true"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="arrow" viewBox="0 0 26 12"><path d="M0 6h23M18 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="flecha" viewBox="0 0 40 24"><path d="M3 12h30M24 4l9 8-9 8" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="page">
+
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="/"><img src="assets/caminolife-mark.webp" alt="CaminoLife" width="44" height="35"> CaminoLife Coaching</a>
+    </div>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="hero-copy">
+      <p class="place">One to one coaching with Dave Hall</p>
+      <h1>Wilgrim or Pilgrim?</h1>
+      <p class="lede">Four weeks of one to one coaching, on whichever side of the Camino you are standing.</p>
+      <div class="doors">
+        <a class="door before" href="#wilgrim-ready">
+          <span class="word">Wilgrim</span>
+          <span class="def">Someone who will walk the Camino. Dreaming, planning, or already booked.</span>
+          <span class="go">Wilgrim Ready: Your 4-Week Camino Prep <svg><use href="#arrow"/></svg></span>
+        </a>
+        <a class="door after" href="#homecoming">
+          <span class="word">Pilgrim</span>
+          <span class="def">Someone who has walked it, and came home carrying more than they packed.</span>
+          <span class="go">Four Weeks to Homecoming <svg><use href="#arrow"/></svg></span>
+        </a>
+      </div>
+      <div class="actions">
+        <!-- BOOKING LINK. Calendly "15 Minute Discovery Call" (Dave, 2026-10-26). This href and the
+             others marked BOOKING LINK below must always match. -->
+        <a class="cta" href="https://calendly.com/leadershiftnow/new-meeting" target="_blank" rel="noopener">Book a free 15-minute call <svg><use href="#arrow"/></svg></a>
+      </div>
+      <span class="note">No charge, no pitch. Fifteen minutes to find out which one fits, or whether neither does.</span>
+    </div>
+    <figure class="hero-photo">
+      <img src="assets/km100-dave.jpg" alt="Dave Hall kneeling beside the Km 100,000 Camino marker with its yellow scallop shell, trekking poles in hand, green Galician fields behind him" width="1100" height="1539" fetchpriority="high">
+      <figcaption>Km 100,000 &middot; Camino Francés, Galicia, May 2024</figcaption>
+    </figure>
+  </section>
+
+  <section class="road" id="options">
+    <div class="wrap rv">
+      <p class="place">The whole road</p>
+      <h2>Everyone plans the walk. I walk with you before it and after it.</h2>
+      <ol class="stages">
+        <li class="stage before">
+          <span class="when">Before</span>
+          <h3>The Dream</h3>
+          <p>For Wilgrims. <strong>Wilgrim Ready: Your 4-Week Camino Prep.</strong> Four weeks with me before you fly.</p>
+          <p class="price-line"><span class="price-sm">$297</span> four calls, paid up front</p>
+          <a class="more" href="#wilgrim-ready">See the four weeks <svg><use href="#arrow"/></svg></a>
+        </li>
+        <li class="stage during">
+          <span class="when">During</span>
+          <h3>The Camino</h3>
+          <p>Yours to walk. Follow the yellow arrows. Nobody can do this part for you, and nobody should.</p>
+        </li>
+        <li class="stage after">
+          <span class="when">After</span>
+          <h3>The Homecoming</h3>
+          <p>For Pilgrims. <strong>Four Weeks to Homecoming.</strong> Four weeks with me once you are back.</p>
+          <p class="price-line"><span class="price-sm">$297</span> four calls, paid up front</p>
+          <a class="more" href="#homecoming">See the four weeks <svg><use href="#arrow"/></svg></a>
+        </li>
+      </ol>
+      <ul class="facts both">
+        <li>Four one to one calls, one a week. The first and last are 75 minutes, the two in between are 45.</li>
+        <li>Booked around your schedule, wherever you are in the world.</li>
+        <li>An intake form before week one, so the first call starts in the right place.</li>
+        <li>If it is not useful by the end of week two, you stop and I refund the rest. No argument, no awkwardness.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="wilgrim-ready" class="side before">
+    <div class="wrap">
+      <div class="narrow-left prose rv">
+        <p class="place">For Wilgrims &middot; before you walk</p>
+        <h2>Most pilgrims prepare their body. Few prepare their soul.</h2>
+        <p class="callback">The Camino is an encounter with yourself. Packing lists will not prepare you for that.</p>
+        <p><strong>Wilgrim Ready: Your 4-Week Camino Prep</strong> takes you through the four movements of my CaminoLife MAPS Framework&trade;, one a week, so that when you take your first step you are not walking blind. Just you and me, on your schedule.</p>
+        <p>On the Camino Francés, a day past Astorga, pilgrims reach the Cruz de Ferro and lay down a stone they carried from home. Whatever route you walk, part of getting ready is knowing what your stone is.</p>
+      </div>
+      <figure class="photo wide rv">
+        <img src="assets/santo-toribio.jpg" alt="A pilgrim with a teal backpack, sun hat and trekking poles walking toward the stone cross of Santo Toribio, with Astorga, its cathedral and the mountains beyond" width="1600" height="800">
+        <figcaption>Crucero de Santo Toribio, looking down on Astorga and the Montes de León, the climb that leads to the Cruz de Ferro.</figcaption>
+      </figure>
+      <ul class="weeks rv">
+        <li class="week"><span class="n">Week one &middot; 75 minutes</span><h3>M &middot; Mental</h3><p>Route, logistics, and practical readiness. Clarity instead of rumination. Why you are going, held with a clear head.</p></li>
+        <li class="week"><span class="n">Week two &middot; 45 minutes</span><h3>A &middot; Awareness</h3><p>Naming what you feel before the road names it for you. Shame and guilt, and the difference. What you are carrying that is not in the pack.</p></li>
+        <li class="week"><span class="n">Week three &middot; 45 minutes</span><h3>P &middot; Physical</h3><p>Training, boots, health, and packing light. Learning to treat your body as a teacher, not an obstacle.</p></li>
+        <li class="week"><span class="n">Week four &middot; 75 minutes</span><h3>S &middot; Spiritual</h3><p>Spiritual IQ and Spiritual EQ. Where your deepest wound might be your deepest gift. The questions you will carry onto the road.</p></li>
+      </ul>
+      <div class="buy rv">
+        <p><span class="price-sm">$297</span> Wilgrim Ready, four weekly calls, paid up front.</p>
+        <!-- BOOKING LINK -->
+        <a class="cta" href="https://calendly.com/leadershiftnow/new-meeting" target="_blank" rel="noopener">Book a free 15-minute call <svg><use href="#arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <figure class="finisterre">
+    <img src="assets/finisterre-shell.jpg" alt="Dave Hall playing a travel guitar at Cabo Fisterra beside the Km 0,000 marker with its yellow scallop shell, the Atlantic and the lighthouse behind him" width="1080" height="660">
+    <figcaption class="wrap">
+      <span class="cap-place">Cabo Fisterra, Galicia &middot; Km 0,000</span>
+      <span class="cap-text">The Camino runs out of land here. Pilgrims stand at this marker and look at the sea. Then they turn around, and the walk home begins.</span>
+      <span class="cap-line">The walk ends. The pilgrimage does not.</span>
+    </figcaption>
+  </figure>
+
+  <section id="homecoming" class="side after">
+    <div class="wrap">
+      <div class="narrow-left prose rv">
+        <p class="place">For Pilgrims &middot; after you walk</p>
+        <h2>The Camino surfaces things. It does not finish them.</h2>
+        <p class="callback">You are back, but you are not home yet.</p>
+        <p>For weeks you had one job. Walk. Eat. Sleep. Walk again. Something came loose out there, and you felt it. Maybe it was grief you had been carrying for years. Maybe it was a decision you had been avoiding. Maybe it was just the quiet, or what the still small voice of God whispered to you through the Eucalyptus leaves.</p>
+        <p>Then you flew home. The laundry, the inbox, the same kitchen. Within a month the Camino starts to feel like a holiday you once took, and the thing that came loose quietly settles back into place.</p>
+        <p>That is not a failure of will. It is what happens to every pilgrim who walks back into an unchanged life with no plan for the thing they are carrying. The walk opens it. The homecoming is where it either takes root or closes over.</p>
+      </div>
+      <ul class="weeks rv">
+        <li class="week"><span class="n">Week one &middot; 75 minutes</span><h3>Arrival and The Practice</h3><p>We start with what you wrote on your intake form and walk through both frameworks, my CaminoLife MAPS Framework&trade; and my CaminoLife WALKS Framework&trade;. You leave with one daily rhythm you will actually keep: the footsteps mantra, a word paired with every step.</p></li>
+        <li class="week"><span class="n">Week two &middot; 45 minutes</span><h3>The Weight</h3><p>What is still sitting on you from before the walk. The Camino surfaced it. This is where we find out exactly what it is, and stop trying to fix it long enough to name it.</p></li>
+        <li class="week"><span class="n">Week three &middot; 45 minutes</span><h3>Relationships</h3><p>Who in your life needs to hear what changed, and how to say it. We script that conversation before you have it, so it goes the way you mean it to.</p></li>
+        <li class="week"><span class="n">Week four &middot; 75 minutes</span><h3>The Next Mountain and Integration</h3><p>Not another pilgrimage. The ordinary one: work, family, the thing you have been avoiding. We map it the way you would map a stage. Then you write your own one-sentence answer to what the Camino did to you, and you lay the stone down.</p></li>
+      </ul>
+      <ul class="facts rv">
+        <li>A free copy of Walking Toward Fire: One Pilgrim's Journey of Loss, Recovery, and Return on the Camino de Santiago (when it comes out Spring of 2027)</li>
+      </ul>
+      <div class="buy rv">
+        <p><span class="price-sm">$297</span> Four Weeks to Homecoming, four weekly calls, paid up front.</p>
+        <!-- BOOKING LINK -->
+        <a class="cta" href="https://calendly.com/leadershiftnow/new-meeting" target="_blank" rel="noopener">Book a free 15-minute call <svg><use href="#arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap rv">
+      <p class="place">How it works</p>
+      <h2>Two frameworks, used every week, by Wilgrims and Pilgrims alike.</h2>
+      <div class="frames">
+        <div class="frame">
+          <h3>The CaminoLife MAPS Framework&trade;, the movements of the journey</h3>
+          <dl class="defs">
+            <div><dt>Mental</dt><dd>Clarify what you are carrying, and what you are choosing to let go of.</dd></div>
+            <div><dt>Awareness</dt><dd>Name the grief, the fear, the unfinished thing, without rushing to fix it.</dd></div>
+            <div><dt>Physical</dt><dd>One daily rhythm that keeps the road under your feet.</dd></div>
+            <div><dt>Spiritual IQ</dt><dd>How God might be speaking through this season.</dd></div>
+            <div><dt>Spiritual EQ</dt><dd>What in your history shapes how you receive it, and where your deepest wound might be your deepest gift.</dd></div>
+          </dl>
+        </div>
+        <div class="frame">
+          <h3>The CaminoLife WALKS Framework&trade;, the daily practice</h3>
+          <dl class="defs">
+            <div><dt>W, Wake up</dt><dd>Write your dreams, your feelings, and your intention for the day. Walk toward the sun. Water yourself, sixteen ounces in the first half hour.</dd></div>
+            <div><dt>A, Accept what is</dt><dd>Stay present. It is all we truly have. Do not replay the past. Do not catastrophize the future.</dd></div>
+            <div><dt>L, Light a candle</dt><dd>A gratitude candle. Three things you are grateful for, morning and night. Then ten to fifteen minutes in meditation.</dd></div>
+            <div><dt>K, Know that you are enough</dt><dd>Not when you have fixed it. Now.</dd></div>
+            <div><dt>S, Simplify</dt><dd>Embark on the inner and outer journey of minimalization.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="guide">
+    <div class="wrap">
+      <div class="prose rv">
+        <p class="place">Your coach</p>
+        <h2>I have been a Wilgrim and a Pilgrim, four times over.</h2>
+        <p>I am Dave Hall. Four Caminos: the Norte in 2019, the Portuguese Coastal in 2023, Leon to Santiago in May 2024 as traveling hospitalero on Dan Mullins' Magical Musical Camino, and the Litoral and Spiritual Variant with Dan in 2025.</p>
+        <p>I did not come home from the first one well. I know exactly how it goes when you walk 500 miles, feel something crack open, and then let an ordinary November close it back up. My book, Walking Toward Fire, is the honest version of that story.</p>
+        <p>I became a Certified Life Coach so I could offer you the coaching I wish someone had offered me, before I flew out and in the weeks after I got off the plane.</p>
+        <div class="actions">
+          <a class="cta quiet" href="https://walkingtowardfire.com" target="_blank" rel="noopener">Read the prologue <svg><use href="#arrow"/></svg></a>
+        </div>
+      </div>
+      <figure class="portrait landscape rv">
+        <img src="assets/dave-dan-singing.jpg" alt="Dave Hall and Dan Mullins singing together into one microphone, both playing travel guitars, with poppies and greenery behind them" width="1431" height="994">
+        <figcaption>With Dan Mullins at Casa Susi on the Magical Musical Camino, May 12, 2024</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="narrow rv">
+      <p class="place">Before you ask</p>
+      <h2>The questions people actually ask.</h2>
+      <div class="faq">
+        <details>
+          <summary>Am I a Wilgrim or a Pilgrim?</summary>
+          <p>If you have not walked yet, or you are walking soon, you are a Wilgrim, and Wilgrim Ready is for you. If you are back, you are a Pilgrim, and Four Weeks to Homecoming is for you. If you are not sure, that is what the free call is for.</p>
+        </details>
+        <details>
+          <summary>Can I do both?</summary>
+          <p>Yes. Before you go and after you get back is the whole arc, and some pilgrims want someone with them on both sides of it. You can save even more when you combine both Wilgrims and Pilgrims Coaching (<a href="/checkout?for=both" style="color:var(--gold)">see offer in checkout</a>).</p>
+        </details>
+        <details>
+          <summary>Is Wilgrim Ready the same as the Wilgrims cohort?</summary>
+          <p>No. The cohort is a small group that meets together on Zoom. Wilgrim Ready is one to one: just you and me, on your schedule.</p>
+        </details>
+        <details>
+          <summary>How long ago do I have to have walked?</summary>
+          <p>There is no window. Fresh off the plane is good, because it is all still loud. Three years out is also good, because by then you know which parts stayed. If you are still thinking about it, it is not too late.</p>
+        </details>
+        <details>
+          <summary>Do I have to be religious?</summary>
+          <p>No. Two of the five movements are spiritual, and I am a person of faith, so I will not pretend otherwise. But this is your pilgrimage, not mine. Plenty of people do this work without sharing my beliefs and find our time together very valuable.</p>
+        </details>
+        <details>
+          <summary>What if it is not working?</summary>
+          <p>Then you stop at the end of week two and I refund the rest. You do not have to justify it.</p>
+        </details>
+        <details>
+          <summary>Is this therapy?</summary>
+          <p>No, and it is not a substitute for it. This is coaching: structured, practical, built around what you do next. If what surfaces needs a therapist, I will say so plainly and help you find one.</p>
+        </details>
+        <details>
+          <summary>What happens on the free 15-minute call?</summary>
+          <p>You tell me where you are walking, or where you walked, and what you are carrying. We get to know one another, I answer any questions or concerns you may have and together we discern if you will benefit from CaminoLife Coaching.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="close">
+    <div class="wrap">
+      <p class="place rv">Ultreia</p>
+      <h2 class="rv">Wilgrim or Pilgrim, it starts with fifteen minutes.</h2>
+      <div class="actions rv">
+        <!-- BOOKING LINK -->
+        <a class="cta" href="https://calendly.com/leadershiftnow/new-meeting" target="_blank" rel="noopener">Book a free 15-minute call <svg><use href="#arrow"/></svg></a>
+      </div>
+      <span class="note" style="margin-inline:auto;text-align:center">Four weeks, $297, either side of the walk.</span>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>Dave Hall, Camino Life Coach &middot; <a href="/" style="color:inherit">caminocoachdave.com</a></span>
+      <span>Write to Dave: <span class="mail">dave@caminolife.app</span></span>
+      <span><a href="/privacy" style="color:inherit">Privacy</a> &middot; &copy; 2026 CaminoLife Coaching, LLC</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function sky() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    root.style.setProperty('--p', p.toFixed(3));
+  }
+  sky();
+  window.addEventListener('scroll', sky, { passive: true });
+  window.addEventListener('resize', sky);
+
+  if (!reduce && 'IntersectionObserver' in window) {
+    root.classList.add('js');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.remove('pre'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    Array.prototype.forEach.call(document.querySelectorAll('.rv'), function (el) {
+      if (el.getBoundingClientRect().top > window.innerHeight) el.classList.add('pre');
+      io.observe(el);
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

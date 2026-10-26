@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Start Your Coaching</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Checkout for CaminoLife one to one coaching with Dave Hall.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Checkout for one to one coaching (Wilgrim Ready, Four Weeks to Homecoming, or both).
+     Unlisted (noindex, linked from nowhere public): Dave sends it after the free call.
+     Payment goes through PayPal Payments Standard to Dave's PayPal, same as /12-steps-signup.
+     Optional ?for=wilgrim | pilgrim | both preselects the coaching. */
+  :root {
+    --night: #0B0645; --navy: #10069F; --dusk: #3A2470;
+    --terracotta: #C26B4A; --dawn: #F2A65A; --gold: #FEDD00;
+    --bone: #F3EEE4; --bone-dim: rgba(243, 238, 228, 0.72); --bone-faint: rgba(243, 238, 228, 0.40);
+    --stone: rgba(243, 238, 228, 0.07); --stone-edge: rgba(243, 238, 228, 0.18);
+    --display: "Fraunces", "Iowan Old Style", Georgia, serif;
+    --body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body { margin: 0; min-height: 100vh; color: var(--bone); font-family: var(--body); font-size: 17px; line-height: 1.55;
+    background: linear-gradient(180deg, var(--night) 0%, var(--navy) 55%, var(--dusk) 100%); background-color: var(--night);
+    -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+  .wrap { width: min(820px, 100% - 32px); margin-inline: auto; }
+  .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: rgba(11, 6, 69, 0.8); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--stone-edge); }
+  .top .wrap { display: flex; align-items: center; padding-block: 10px; }
+  .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 600; font-size: 15px; letter-spacing: 0.02em; }
+  .brand img { width: 44px; height: auto; display: block; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.08; margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+  h1 { font-size: clamp(34px, 5vw, 52px); max-width: 18ch; }
+  h2 { font-size: clamp(24px, 3vw, 30px); }
+  h3 { font-size: 21px; }
+  p { margin: 0; }
+  .place { font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin: 0 0 14px; }
+  .lede { font-family: var(--display); font-style: italic; font-weight: 300; font-size: clamp(19px, 2.2vw, 23px); color: var(--bone-dim); margin-top: 16px; max-width: 46ch; }
+  .muted { color: var(--bone-dim); }
+  .small { font-size: 14.5px; }
+  main { padding-block: 7vh 10vh; display: grid; gap: 44px; }
+  .head .call { margin-top: 16px; font-size: 15.5px; color: var(--bone-dim); }
+  .head { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 32px; align-items: center; }
+  .head-photo { margin: 0; }
+  .head-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%;
+    border-radius: 8px 36px 8px 36px; border: 1px solid var(--stone-edge); }
+  .head-photo figcaption { margin-top: 10px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bone-faint); }
+  .head .call a { color: var(--gold); }
+
+  fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 12px; min-width: 0; }
+  legend { padding: 0; margin-bottom: 14px; }
+  .step { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; color: var(--bone-faint); display: block; margin-bottom: 6px; }
+
+  .opt { position: relative; display: grid; grid-template-columns: 26px 1fr auto; gap: 14px; align-items: start; padding: 20px 22px;
+    background: var(--stone); border: 1px solid var(--stone-edge); border-radius: 6px 24px 6px 24px; cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease; }
+  .opt:hover { border-color: var(--bone-faint); }
+  .opt input { position: absolute; opacity: 0; pointer-events: none; }
+  .tick { width: 22px; height: 22px; margin-top: 3px; border: 2px solid var(--bone-faint); display: grid; place-items: center; }
+  .radio .tick { border-radius: 50%; }
+  .check .tick { border-radius: 5px; }
+  .tick::after { content: ""; width: 10px; height: 10px; background: var(--night); border-radius: inherit; transform: scale(0); transition: transform 0.15s ease; }
+  .opt:has(input:checked) { border-color: var(--gold); background: rgba(254, 221, 0, 0.07); }
+  .opt:has(input:checked) .tick { background: var(--gold); border-color: var(--gold); }
+  .opt:has(input:checked) .tick::after { transform: scale(1); }
+  .opt:has(input:focus-visible) { outline: 3px solid var(--gold); outline-offset: 3px; }
+  .opt .name { font-family: var(--display); font-weight: 600; font-size: 20px; line-height: 1.2; }
+  .opt .desc { margin-top: 6px; font-size: 15px; color: var(--bone-dim); max-width: 48ch; }
+  .opt .price { font-family: var(--display); font-weight: 600; font-size: 24px; color: var(--gold); white-space: nowrap; text-align: right; line-height: 1.1; }
+  .opt .price s { display: block; font-family: var(--body); font-weight: 400; font-size: 14px; color: var(--bone-faint); }
+  .opt .when { display: inline-block; font-size: 11.5px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; margin-bottom: 4px; }
+  .when.before { color: var(--dawn); }
+  .when.after { color: var(--gold); }
+
+  .bonus { border: 1px solid var(--gold); background: linear-gradient(135deg, rgba(254,221,0,0.10), rgba(242,166,90,0.06)); }
+  .badge { position: absolute; top: -12px; left: 22px; background: var(--gold); color: var(--night); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; }
+  .bonus .name { font-size: 22px; }
+
+  .offer-note { font-size: 15px; color: var(--bone-dim); padding-left: 2px; }
+  .offer-note strong { color: var(--gold); font-weight: 600; }
+
+  .summary { background: rgba(11, 6, 69, 0.55); border: 1px solid var(--stone-edge); border-radius: 8px 30px 8px 30px; padding: 26px 24px; display: grid; gap: 14px; }
+  .lines { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  .lines li { display: flex; justify-content: space-between; gap: 16px; font-size: 16px; }
+  .lines li span:last-child { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .lines .save { color: var(--dawn); }
+  .total { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; border-top: 1px solid var(--stone-edge); padding-top: 14px; }
+  .total strong { font-family: var(--display); font-size: 30px; color: var(--gold); font-variant-numeric: tabular-nums; }
+  .pay { display: inline-flex; justify-content: center; align-items: center; gap: 12px; background: var(--gold); color: var(--night);
+    text-decoration: none; font-weight: 700; font-size: 17px; padding: 16px 26px; border-radius: 999px; box-shadow: 0 10px 40px rgba(254,221,0,0.22); }
+  .pay[aria-disabled="true"] { background: var(--stone); color: var(--bone-faint); box-shadow: none; pointer-events: none; }
+  .empty { font-size: 15px; color: var(--bone-dim); }
+
+  .thanks { padding-block: 10vh; display: grid; gap: 18px; }
+  footer { border-top: 1px solid var(--stone-edge); padding-block: 24px 40px; font-size: 14px; color: var(--bone-dim); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; }
+  footer .mail { color: var(--bone); user-select: all; }
+
+  @media (max-width: 700px) {
+    .head { grid-template-columns: 1fr; gap: 22px; }
+    .head-photo { order: -1; }
+    .head-photo img { aspect-ratio: 1 / 1; }
+  }
+  @media (max-width: 560px) {
+    .opt { grid-template-columns: 24px 1fr; }
+    .opt .price { grid-column: 2; text-align: left; }
+    .opt .price s { display: inline; margin-left: 8px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .tick::after, .opt { transition: none; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/one-to-one"><img src="assets/caminolife-mark.webp" alt="CaminoLife" width="44" height="35"> CaminoLife Coaching</a>
+  </div>
+</header>
+
+<!-- Shown only when PayPal sends someone back here after paying -->
+<section class="wrap thanks" id="thanks" hidden>
+  <p class="place">Thank you</p>
+  <h1>You're in. Buen Camino.</h1>
+  <p class="lede">PayPal has your payment. Dave will email you within a day or two to set your first call and send your intake form.</p>
+  <p class="muted small">Questions in the meantime? Write to Dave at <span class="mail">dave@caminolife.app</span>.</p>
+</section>
+
+<main class="wrap" id="main">
+  <div class="head">
+    <div>
+    <p class="place">Start your coaching</p>
+    <h1>Choose your four weeks. Or take all eight.</h1>
+    <p class="lede">Pick your coaching, add a journal if you'd like one, and pay securely with PayPal.</p>
+    <p class="call">Haven't talked with Dave yet? <a href="https://calendly.com/leadershiftnow/new-meeting" target="_blank" rel="noopener">Book your free 15-minute call</a> first.</p>
+    </div>
+    <figure class="head-photo">
+      <img src="assets/km100-dave.jpg" alt="Dave Hall kneeling beside the Km 100,000 Camino marker with its yellow scallop shell, trekking poles in hand" width="1100" height="1539">
+      <figcaption>Km 100,000 &middot; Camino Francés, May 2024</figcaption>
+    </figure>
+  </div>
+
+  <form id="order" novalidate>
+    <fieldset>
+      <legend><span class="step">Step one</span><h2>Your coaching</h2></legend>
+
+      <label class="opt radio" for="c-wilgrim">
+        <input type="radio" name="coaching" id="c-wilgrim" value="wilgrim">
+        <span class="tick" aria-hidden="true"></span>
+        <span>
+          <span class="when before">For Wilgrims &middot; before you walk</span>
+          <span class="name" style="display:block">Wilgrim Ready: Your 4-Week Camino Prep</span>
+          <span class="desc" style="display:block">Four weekly one to one calls: 75, 45, 45 and 75 minutes.</span>
+        </span>
+        <span class="price">$297</span>
+      </label>
+
+      <label class="opt radio" for="c-pilgrim">
+        <input type="radio" name="coaching" id="c-pilgrim" value="pilgrim">
+        <span class="tick" aria-hidden="true"></span>
+        <span>
+          <span class="when after">For Pilgrims &middot; after you walk</span>
+          <span class="name" style="display:block">Four Weeks to Homecoming</span>
+          <span class="desc" style="display:block">Four weekly one to one calls: 75, 45, 45 and 75 minutes. Includes a free copy of Walking Toward Fire when it comes out Spring of 2027.</span>
+        </span>
+        <span class="price">$297</span>
+      </label>
+
+      <label class="opt radio bonus" for="c-both">
+        <span class="badge">Bonus offer</span>
+        <input type="radio" name="coaching" id="c-both" value="both">
+        <span class="tick" aria-hidden="true"></span>
+        <span>
+          <span class="when after">Before and after your walk</span>
+          <span class="name" style="display:block">Wilgrims and Pilgrims Coaching</span>
+          <span class="desc" style="display:block">8 weeks of personal coaching: Wilgrim Ready before you go, and Four Weeks to Homecoming when you're back.</span>
+        </span>
+        <span class="price">$549<s>$594</s></span>
+      </label>
+    </fieldset>
+
+    <fieldset style="margin-top:40px">
+      <legend><span class="step">Step two &middot; special offer</span><h2>Add the 30-Day Digital Journal</h2></legend>
+      <p class="muted small" style="margin:-4px 0 6px">Written by Dave Hall. One page a day to carry what the calls open up.</p>
+
+      <label class="opt check" for="j-wilgrim">
+        <input type="checkbox" name="journal" id="j-wilgrim" value="wilgrim">
+        <span class="tick" aria-hidden="true"></span>
+        <span>
+          <span class="name" style="display:block">30-Day Wilgrim Digital Journal</span>
+          <span class="desc" style="display:block">For the weeks before you walk.</span>
+        </span>
+        <span class="price">$19.95</span>
+      </label>
+
+      <label class="opt check" for="j-pilgrim">
+        <input type="checkbox" name="journal" id="j-pilgrim" value="pilgrim">
+        <span class="tick" aria-hidden="true"></span>
+        <span>
+          <span class="name" style="display:block">30-Day Pilgrim Digital Journal</span>
+          <span class="desc" style="display:block">For the weeks after you're back.</span>
+        </span>
+        <span class="price">$19.95</span>
+      </label>
+
+      <p class="offer-note">Or <strong>just $29.95 for both journals</strong>. Tick both and the price drops automatically.</p>
+    </fieldset>
+  </form>
+
+  <section class="summary" aria-live="polite">
+    <h2>Your order</h2>
+    <p class="empty" id="empty">Choose your coaching above to see your total.</p>
+    <ul class="lines" id="lines" hidden></ul>
+    <div class="total" id="total-row" hidden><span>Total</span><strong id="total">$0</strong></div>
+    <div><a class="pay" id="pay" href="#" aria-disabled="true" rel="noopener">Pay with PayPal</a></div>
+    <p class="muted small">PayPal opens in this window. You can pay from a PayPal account or, in most cases, with a debit or credit card. Your payment goes to Dave Hall. If the coaching is not useful by the end of week two, you stop and Dave refunds the rest.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Dave Hall, Camino Life Coach &middot; <a href="/one-to-one" style="color:inherit">caminocoachdave.com/one-to-one</a></span>
+    <span>Write to Dave: <span class="mail">dave@caminolife.app</span></span>
+    <span><a href="/privacy" style="color:inherit">Privacy</a> &middot; &copy; 2026 CaminoLife Coaching, LLC</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Prices (Dave, 2026-10-26)
+  const COACHING = {
+    wilgrim: { label: "Wilgrim Ready: Your 4-Week Camino Prep", short: "Wilgrim Ready (4 weeks)", price: 297 },
+    pilgrim: { label: "Four Weeks to Homecoming", short: "Four Weeks to Homecoming", price: 297 },
+    both:    { label: "Wilgrims and Pilgrims Coaching (8 weeks)", short: "Wilgrims and Pilgrims Coaching (8 weeks)", price: 549 },
+  };
+  const JOURNAL_ONE = 19.95, JOURNAL_BOTH = 29.95;
+  const PAYPAL_TO = "musicianary@mac.com";
+
+  const $ = (id) => document.getElementById(id);
+  const money = (n) => "$" + n.toLocaleString("en-US", { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 });
+  const here = location.origin + location.pathname;
+
+  const qs = new URLSearchParams(location.search);
+  if (qs.get("paid") === "1") { $("thanks").hidden = false; $("main").hidden = true; return; }
+  const pre = qs.get("for");
+  if (pre && COACHING[pre]) { const r = document.querySelector('input[name="coaching"][value="' + pre + '"]'); if (r) r.checked = true; }
+
+  function update() {
+    const pick = document.querySelector('input[name="coaching"]:checked');
+    const journals = [...document.querySelectorAll('input[name="journal"]:checked')].map((i) => i.value);
+    const lines = [];
+    let total = 0;
+    if (pick) {
+      const c = COACHING[pick.value];
+      lines.push([c.label, money(c.price)]); total += c.price;
+      if (pick.value === "both") lines.push(["Bonus offer, you save", "$45", "save"]);
+    }
+    let jPrice = 0;
+    if (journals.length === 2) { jPrice = JOURNAL_BOTH; lines.push(["30-Day Wilgrim and Pilgrim Digital Journals", money(JOURNAL_BOTH)]); }
+    else if (journals.length === 1) { jPrice = JOURNAL_ONE; lines.push(["30-Day " + (journals[0] === "wilgrim" ? "Wilgrim" : "Pilgrim") + " Digital Journal", money(JOURNAL_ONE)]); }
+    total = Math.round((total + jPrice) * 100) / 100;
+
+    const ul = $("lines"); ul.textContent = "";
+    lines.forEach(([a, b, cls]) => {
+      const li = document.createElement("li"); if (cls) li.className = cls;
+      const s1 = document.createElement("span"); s1.textContent = a;
+      const s2 = document.createElement("span"); s2.textContent = b;
+      li.append(s1, s2); ul.append(li);
+    });
+    const ready = !!pick;
+    $("empty").hidden = ready; ul.hidden = !ready; $("total-row").hidden = !ready;
+    $("total").textContent = money(total);
+
+    const pay = $("pay");
+    if (!ready) { pay.setAttribute("aria-disabled", "true"); pay.href = "#"; pay.textContent = "Pay with PayPal"; return; }
+    const parts = [COACHING[pick.value].short];
+    if (journals.length === 2) parts.push("Wilgrim + Pilgrim Journals");
+    else if (journals.length === 1) parts.push((journals[0] === "wilgrim" ? "Wilgrim" : "Pilgrim") + " Journal");
+    const p = new URLSearchParams({
+      cmd: "_xclick", business: PAYPAL_TO, currency_code: "USD", charset: "utf-8", no_shipping: "1",
+      item_name: "CaminoLife Coaching: " + parts.join(" + "),
+      amount: total.toFixed(2),
+      return: here + "?paid=1", cancel_return: here,
+    });
+    pay.href = "https://www.paypal.com/cgi-bin/webscr?" + p.toString();
+    pay.removeAttribute("aria-disabled");
+    pay.textContent = "Pay " + money(total) + " with PayPal";
+  }
+  document.getElementById("order").addEventListener("change", update);
+  document.getElementById("order").addEventListener("submit", (e) => e.preventDefault());
+  update();
+})();
+</script>
+</body>
+</html>
